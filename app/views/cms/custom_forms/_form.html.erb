@@ -1,0 +1,28 @@
+<% content_for :html_head do %>
+    <%= javascript_include_tag 'form_builder' %>
+<% end %>
+<% session[:form_builder] = {:element_index => 0} %>
+<%= f.cms_text_field :name %>
+<%= f.cms_text_field :email, :instructions => 'Form submission data sent to this address' %>
+<%= f.cms_text_field :success_url, :instructions => 'With or without domain.  eg. /form/completed or http://another-site.com/success' %>
+
+<br clear="all" />
+
+<% @block.custom_form_elements.each do |element| -%>
+  <div class="dyn_element">
+    <%= render(:partial => "cms/custom_forms/forms/#{element.class.config.name}_element", :locals => {:index => element.id, :element => element}) %>
+  </div>
+<% end -%>
+
+<div id="new_form_element"></div>
+
+
+<div class="fields text_fields">
+  <%= label_tag "element_type", 'Add element' %>
+  <%=
+    select_tag('element_type',
+      options_for_select([['-- new element --', '']] + CustomFormElement.subclasses_for_select_options),
+      :onchange => 'newFormElement(this);'
+    )
+  %>
+</div>

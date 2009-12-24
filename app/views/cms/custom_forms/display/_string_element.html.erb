@@ -1,0 +1,9 @@
+<div class="field_container">
+  <% element.load_element -%>
+    <div class="fieldLabel">
+        <label for="fieldLabel"><%=h element.label %></label>
+    </div>
+    <div class="fieldContent">
+        <%= text_field_tag("custom_form[#{string_to_html_name(element.name)}]", nil, :class => element.class_array.join(' ')) %>
+    </div>
+</div>

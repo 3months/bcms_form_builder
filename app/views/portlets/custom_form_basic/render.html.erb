@@ -1,0 +1,19 @@
+<% content_for :header do %>
+  <%= stylesheet_link_tag 'form_builder' %>
+<% end %>
+
+<% if @form -%>
+  <% form_tag(cms_handler_path(@portlet, "submit_form")) do %>
+    <div class="formSection">
+        <fieldset>
+            <% @form.custom_form_elements.each do |element| -%>
+              <%= render(:partial => "cms/custom_forms/display/#{element.class.config.name}_element", :locals => {:element => element}) %>
+            <% end -%>
+        </fieldset>
+    </div>
+  <% end %>
+
+<% else -%>
+  No form associated to portlet.  Please contact site administrators.
+<% end -%>
+

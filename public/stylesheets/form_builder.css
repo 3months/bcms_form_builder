@@ -1,0 +1,131 @@
+
+.formSection {
+	width: 566px;
+	background-color: #f6f6f6;
+	margin-bottom: 10px;
+}
+
+.formSection fieldset h3 {
+	color: #666666;
+	font-size: 1.6em;
+	display: block;
+	font-weight: bold;
+	margin: 0px 0px 8px;
+	padding: 0px;
+}
+
+.formSection .description {
+	font-size:1.2em;
+	color:#666666;
+	line-height:1.4em;
+	margin-bottom:10px;
+}
+
+.formSection fieldset {
+	border: none;
+	margin: 10px;
+	padding: 0px 0px 20px;
+	clear: both;
+}
+
+.formSection fieldset legend {
+	color: #666666;
+	font-size: 1.6em;
+	display: block;
+	_margin: 0 -8px;/* IE win*/
+	padding: 0px;
+	margin-bottom: 12px;
+	font-weight: bold;
+	line-height: 1.6em;
+}
+
+.formSection fieldset h3 span {
+	color: #ff9900;
+}
+
+.formSection fieldset .field_container p {
+	font-size:1.2em;
+	clear: both;
+	margin-bottom: 10px;
+}
+
+
+.formSection fieldset .field_container {
+	clear: both;
+	margin-bottom: 10px;
+}
+
+.formSection fieldset .field_container ul {
+	margin:0em;
+	padding: 0px;
+}
+
+.formSection fieldset .field_container li {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.formSection fieldset .field_container .inputGroupGrey {
+	background-color:#f0f0f0;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+.formSection fieldset .field_container .frequenceyWrapper {
+	background-color:#f0f0f0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.formSection fieldset .field_container .frequenceyWrapper .title {
+	font-weight:bold;
+	padding:0 0 0 8px;
+	/* fix for IE peekaboo bug */
+	height: 1%;
+}
+
+.formSection fieldset .field_container .inputGroup {
+	background-color:#f6f6f6;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.formSection fieldset .field_container li label {
+	margin-left: 5px;
+}
+
+.formSection fieldset .field_container .fieldLabel {
+	float: left;
+	width: 150px;
+	font-weight: bold;
+	color: #707070;
+	padding-top: 5px;
+	font-size:1.1em;
+}
+
+
+.formSection fieldset .field_container .fieldLabel label {
+	font-weight: bold;
+}
+
+.formSection fieldset .field_container .fieldContent {
+	float: left;
+	width: 394px;
+	font-size:1.1em;
+	padding-top: 5px;
+}
+
+.formSection fieldset .field_container .fieldContent ul, .formSection fieldset .field_container .fieldContent li{
+	margin:0px;
+	padding:0px;
+	list-style-type: none;
+}
+
+.formSection fieldset .field_container label {
+	color: #707070;
+}

@@ -1,0 +1,5 @@
+<%= f.cms_text_field :name %>
+<%= f.cms_text_field :email_address, :instructions => "Leave blank to use the Form's default email address" %>
+<%= f.cms_drop_down :custom_form_id, [['-- select --', '']] + CustomForm.find(:all, :order => "name ASC").map{|cf| [cf.name, cf.id.to_s]} %>
+<%= f.cms_drop_down :handler, ActionView::Template.template_handler_extensions, :default => "erb" %>
+<%= f.cms_text_area :template, :default_value => @block.class.default_template %>
