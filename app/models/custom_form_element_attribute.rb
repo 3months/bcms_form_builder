@@ -77,6 +77,37 @@ class CustomFormElementAttribute < ActiveRecord::Base
     end
   end
 
+  def radio_button_options=(options)
+    self.item_list = [] unless options.is_a?(String)
+
+    lines = options.map {|s| s.chomp}
+    flattened = lines.map do |o|
+      parts = o.split(/\s*\|\s*/)
+      parts.length == 2 ? "#{parts.first == 't' ? 't' : 'f'};#{parts.last}" : "f;#{parts.first}"
+    end
+    self.item_list = flattened
+  end
+  def radio_button_options
+    return item_list.map do |o|
+      parts = o.split(/;/)
+      if parts.length == 1
+        parts.first
+      else
+        parts.first == 't' ? "t|#{parts.last}" : "#{parts.last}"
+      end
+    end.join("\n")
+  end
+  def radio_button_options_array
+    return item_list.map do |o|
+      parts = o.split(/;/)
+      if parts.length == 1
+        [false, parts.first]
+      else
+        parts.first == 't' ? [true, parts.last] : [false, parts.last]
+      end
+    end
+  end
+
   def class_values=(values)
     self.item_list = [] unless values.is_a?(String)
 

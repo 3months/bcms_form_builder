@@ -16,6 +16,7 @@ class CustomFormElement < ActiveRecord::Base
     'TextCustomFormElement',
     'SelectCustomFormElement',
     'CheckBoxCustomFormElement',
+    'RadioButtonCustomFormElement',
     'SubmitCustomFormElement'
   ]
 
