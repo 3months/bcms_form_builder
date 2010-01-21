@@ -1,4 +1,5 @@
 <h3>String element</h3>
+<% index ||= (session[:form_builder][:element_index] += 1) -%>
 <div class="fields text_fields">
   <%  element.load_element -%>
   <%= label_tag "custom_form_elements_#{index}_name", 'Identifier' %>
@@ -12,10 +13,16 @@
   <%= text_field_tag("custom_form[elements][#{index}][position]", element.position) %>
   <br clear="all" />
   <div class="to_hide">
-    <%= label_tag "custom_form_elements_#{index}_classes", 'Classes' %>
-    <%= text_field_tag("custom_form[elements][#{index}][classes]", element.classes) %>
-    <div class="instructions">Separate with commas.</div>
     <%= hidden_field_tag("custom_form[elements][#{index}][type]", 'StringCustomFormElement') %>
+    <%= label_tag "custom_form_elements_#{index}_validations", 'Validations' %>
+    <% validations = element.available_validations -%>
+    <% existing_validations = element.custom_form_element_validations -%>
+    <% if validations.length > 0 -%>
+      <% validations.each do |key, value| -%>
+        <%= check_box_tag("custom_form[elements][#{index}][validations][#{key.to_s}]", '1', (existing_validations.detect {|v| v.key == key.to_s}) ? true : false) %>
+        <label for="custom_form_elements_<%= index %>_validations_<%= key.to_s %>"><%=h value[:display_name] %></label>
+      <% end -%>
+    <% end %>
     <br clear="all" />
   </div>
   <%#= link_to('hide', {:anchor => ''}, :onclick => 'return false;', :class => 'hide_link') %>

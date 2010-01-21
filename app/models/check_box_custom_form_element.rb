@@ -8,8 +8,8 @@ class CheckBoxCustomFormElement < CustomFormElement
     @@check_box_config = CustomFormElementConfig.new(
       :check_box, 'Check Box Input',
       :collecting => true,
-      :accessors => {:label => :direct_value, :options => :check_box_options, :classes => :class_values},
-      :readers => {:options_array => [:options, :check_box_options_array], :class_array => [:classes, :class_array]}
+      :accessors => {:label => :direct_value, :options => :check_box_options},
+      :readers => {:options_array => [:options, :check_box_options_array]}
     )
     @@check_box_config.freeze
 

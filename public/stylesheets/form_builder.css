@@ -1,4 +1,18 @@
+/* Admin styles */
+form h3 {
+    color: #36659D;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    margin-bottom: 5px;
+}
 
+form div.dyn_element {
+    border: dotted 1px #36659D;
+    padding: 7px;
+    margin-bottom: 5px;
+}
+
+/* Public styles */
 .formSection {
 	width: 566px;
 	background-color: #f6f6f6;

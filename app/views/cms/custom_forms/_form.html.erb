@@ -1,5 +1,6 @@
 <% content_for :html_head do %>
     <%= javascript_include_tag 'form_builder' %>
+    <%= stylesheet_link_tag 'form_builder' %>
 <% end %>
 <% session[:form_builder] = {:element_index => 0} %>
 <%= f.cms_text_field :name %>

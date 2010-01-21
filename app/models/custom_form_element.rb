@@ -5,9 +5,12 @@ class CustomFormElement < ActiveRecord::Base
   # :dependent => :destroy required, else #build_attributes causes many orphan
   # CustomFormElementAttributes to be created
   has_many :custom_form_element_attributes, :dependent => :destroy
+  has_many :custom_form_element_validations, :dependent => :destroy
 
   validates_presence_of :name
   validates_length_of :name, :maximum => 255
+
+  attr_accessor :non_ar_errors
 
   SUBCLASSES = [
     'TitleCustomFormElement',
@@ -67,7 +70,7 @@ class CustomFormElement < ActiveRecord::Base
     new_elements = []
     old_elements = parent.custom_form_elements.map {|e| e}
     base_position = parent.next_elements_position
-    
+
     elements_hash.each do |k, v|
       next unless klass = subclass(v.delete(:type))
       
@@ -99,7 +102,15 @@ class CustomFormElement < ActiveRecord::Base
 
   # build_attributes
   #
+  # Fetches all constructed attributes via #build_input_attributes and triggers the
+  # building of validations on this element via #build_validations
   def build_attributes(attribute_hash)
+    validations = attribute_hash.delete(:validations)
+    if validations
+      logger.debug("Validation options passed: #{validations}")
+    end
+    self.build_validations(validations)
+
     logger.debug("Building #{self.class} attribute for form element")
     self.custom_form_element_attributes = CustomFormElementAttribute.build_input_attributes(attribute_hash, self.class.config)
   end
@@ -156,34 +167,53 @@ class CustomFormElement < ActiveRecord::Base
     return string_to_html_name(self.name)
   end
 
-  private
+  # available_validations
+  #
+  def available_validations
+    return self.class.config.validations
+  end
 
-#    # assign_position
-#    #
-#    # If this element has no position assigned (type is not Fixnum), assign it the
-#    # value 1 higher than the highest position of any of its siblings
-#    #
-#    def assign_position
-#      unless self.position.is_a?(Fixnum)
-#        last = siblings.inject do |memo, element|
-#          element.position && memo > element.position ? memo : element.position
-#        end
-#
-#        self.posision = last.to_i + 1
-#      end
-#    end
-#
-#    # siblings
-#    #
-#    # Returns all elements who have the same parent as this element, excluding this
-#    # element.
-#    #
-#    def siblings
-#      return [] unless self.custom_form
-#
-#      all_chidren = self.custom_form.custom_form_elements
-#      all_chidren.delete(self)
-#      return all_chidren
-#    end
+  # build_validations
+  #
+  def build_validations(validation_hash)
+    self.custom_form_element_validations = []
+    return unless validation_hash.is_a?(Hash)
+    
+    validation_hash.each do |key, value|
+      next unless key.respond_to?(:intern) && value == '1'
+      next unless self.available_validations[key.intern]
+
+      self.custom_form_element_validations << CustomFormElementValidation.new(:key => key.to_s)
+    end
+  end
+
+  def non_ar_validate(value)
+    valid = true
+    self.custom_form_element_validations.each do |validation|
+      test = send(validation.key.intern, value)
+      if test.is_a?(ValidationError)
+        valid = false
+        add_error(test)
+      end
+    end
+
+    return valid
+  end
+
+  protected
+
+    class ValidationError
+      
+      attr_reader :message
+
+      def initialize(message)
+        @message = message
+      end
+    end
+
+    def add_error(error)
+      self.non_ar_errors ||= []
+      self.non_ar_errors << error
+    end
   
 end

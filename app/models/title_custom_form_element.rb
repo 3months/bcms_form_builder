@@ -7,7 +7,9 @@ class TitleCustomFormElement < CustomFormElement
 
     @@title_config = CustomFormElementConfig.new(
       :title, 'Title',
-      :accessors => {:title => :direct_value}
+      :accessors => {:title => :direct_value, :classes => :class_values},
+      :readers => {:class_array => [:classes, :class_array]}
+
     )
     @@title_config.freeze
 

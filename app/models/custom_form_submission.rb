@@ -1,11 +1,13 @@
 class CustomFormSubmission
 
   attr_reader :custom_form_id
+  attr_reader :errors
 
   def initialize(custom_form, parameters)
     @parameters = parameters
     @custom_form = custom_form
     @completed_elements = []
+    @errors = {}
   end
 
   def each
@@ -41,7 +43,23 @@ class CustomFormSubmission
     )
   end
 
+  def validate
+    valid = true
+    each do |pair|
+      unless pair.first.non_ar_validate(pair.last)
+        add_error(pair.first, pair.first.non_ar_errors)
+        valid = false
+      end
+    end
+
+    return valid
+  end
+
   private
+
+    def add_error(element, errors)
+      @errors[element.name] = errors
+    end
 
     def email_contents
       values = []

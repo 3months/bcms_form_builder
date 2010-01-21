@@ -4,6 +4,6 @@
         <label for="custom_form_<%= string_to_html_name(element.name) %>"><%=h element.label %></label>
     </div>
     <div class="fieldContent">
-        <%= text_area_tag("custom_form[#{string_to_html_name(element.name)}]", nil, :class => element.class_array.join(' ')) %>
+        <%= text_area_tag("custom_form[#{string_to_html_name(element.name)}]", nil) %>
     </div>
 </div>

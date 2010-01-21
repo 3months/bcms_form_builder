@@ -1,6 +1,7 @@
 class CustomFormElementConfig
 
   attr_reader :name, :display_name
+  attr_reader :validations
   attr_reader :collecting
 
   def initialize(name, display_name, options = {})
@@ -8,6 +9,7 @@ class CustomFormElementConfig
     @display_name = display_name
     @accessors = {}
     @readers = {}
+    @validations = {}
     @collecting = !!options[:collecting]
 
     if options[:accessors]
@@ -15,6 +17,9 @@ class CustomFormElementConfig
     end
     if options[:readers]
       self.readers = options[:readers]
+    end
+    if options[:validations]
+      @validations = options[:validations]
     end
   end
 

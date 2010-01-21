@@ -8,8 +8,8 @@ class RadioButtonCustomFormElement < CustomFormElement
     @@radio_button_config = CustomFormElementConfig.new(
       :radio_button, 'Radio Button Input',
       :collecting => true,
-      :accessors => {:label => :direct_value, :options => :radio_button_options, :classes => :class_values},
-      :readers => {:options_array => [:options, :radio_button_options_array], :class_array => [:classes, :class_array]}
+      :accessors => {:label => :direct_value, :options => :radio_button_options},
+      :readers => {:options_array => [:options, :radio_button_options_array]}
     )
     @@radio_button_config.freeze
 

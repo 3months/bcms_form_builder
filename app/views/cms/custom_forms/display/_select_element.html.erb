@@ -6,8 +6,7 @@
     <div class="fieldContent">
       <%= select_tag(
         "custom_form[#{string_to_html_name(element.name)}]",
-        options_for_select([['-- select --', '']] + element.options_array),
-        :class => element.class_array.join(' ')
+        options_for_select([['-- select --', '']] + element.options_array)
       ) %>
     </div>
 </div>

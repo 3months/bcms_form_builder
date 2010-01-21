@@ -1,9 +1,13 @@
+<% errors_exist ||= false %>
 <div class="field_container">
   <% element.load_element -%>
     <div class="fieldLabel">
         <label for="fieldLabel"><%=h element.label %></label>
     </div>
     <div class="fieldContent">
-        <%= text_field_tag("custom_form[#{string_to_html_name(element.name)}]", nil, :class => element.class_array.join(' ')) %>
+        <%= text_field_tag("custom_form[#{string_to_html_name(element.name)}]", nil) %>
+        <% if errors_exist && flash["#{@portlet.instance_name}_errors"][element.name] -%>
+          <span class="fieldErrors"><%= flash["#{@portlet.instance_name}_errors"][element.name].map {|e| e.message % element.name}.join(', ') %></span>
+        <% end -%>
     </div>
 </div>

@@ -1,2 +1,4 @@
 <% element.load_element -%>
-<legend><%=h element.title %></legend>
+<% content_tag(:legend, :class => (element.class_array || []).join(' ')) do %>
+  <%=h element.title %>
+<% end %>

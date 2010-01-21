@@ -8,8 +8,7 @@ class TextCustomFormElement < CustomFormElement
     @@text_config = CustomFormElementConfig.new(
       :text, 'Text Input',
       :collecting => true,
-      :accessors => {:label => :direct_value, :classes => :class_values},
-      :readers => {:class_array => [:classes, :class_array]}
+      :accessors => {:label => :direct_value}
     )
     @@text_config.freeze
 

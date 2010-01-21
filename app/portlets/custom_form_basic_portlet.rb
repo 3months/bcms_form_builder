@@ -24,18 +24,21 @@ class CustomFormBasicPortlet < Portlet
         logger.info("*********************************************************")
       end
 
-      recipients = portlet.email_address.to_s.strip
-      recipients = @form.email if recipients.blank?
+      if @custom_form.validate
+        recipients = portlet.email_address.to_s.strip
+        recipients = @form.email if recipients.blank?
 
-      @custom_form.send_results!(recipients)
+        @custom_form.send_results!(recipients)
 
-      store_hash_in_flash('submission', {:custom_form_id => @form.id})
-      @form.success_url
+        store_hash_in_flash('submission', {:custom_form_id => @form.id})
+        @form.success_url
+      else
+        store_params_in_flash
+        store_errors_in_flash(@custom_form.errors)
+        url_for_failure
+      end
     rescue ActiveRecord::RecordNotFound
       url_for_failure
-#    rescue Exception
-#      store_params_in_flash
-#      store_errors_in_flash(@custom_form.errors)
     end
 
   end

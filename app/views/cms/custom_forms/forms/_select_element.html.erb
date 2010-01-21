@@ -1,4 +1,5 @@
 <h3>Select element</h3>
+<% index ||= (session[:form_builder][:element_index] += 1) -%>
 <div class="fields text_fields">
   <% element.load_element -%>
   <%= label_tag "custom_form_elements_#{index}_name", 'Identifier' %>
@@ -12,10 +13,6 @@
   <%= text_field_tag("custom_form[elements][#{index}][position]", element.position) %>
   <br clear="all" />
   <div class="to_hide">
-    <%= label_tag "custom_form_elements_#{index}_classes", 'Classes' %>
-    <%= text_field_tag("custom_form[elements][#{index}][classes]", element.classes) %>
-    <div class="instructions">Separate with commas.</div>
-    <br clear="all" />
     <%= label_tag "custom_form_elements_#{index}_options", 'Options' %>
     <%= text_area_tag("custom_form[elements][#{index}][options]", element.options, :cols => 35, :rows => 4) %>
     <div class="instructions">Enter one label per line.</div>
