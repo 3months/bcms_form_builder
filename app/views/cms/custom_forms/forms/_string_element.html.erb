@@ -6,25 +6,15 @@
   <%= text_field_tag("custom_form[elements][#{index}][name]", element.name) %>
   <div class="instructions">Name will not appear on form.</div>
   <br clear="all" />
-  <%= label_tag "custom_form_elements_#{index}_name", 'Label' %>
-  <%= text_field_tag("custom_form[elements][#{index}][label]", element.label) %>
-  <br clear="all" />
   <%= label_tag "custom_form_elements_#{index}_position", 'Position' %>
   <%= text_field_tag("custom_form[elements][#{index}][position]", element.position) %>
   <br clear="all" />
-  <div class="to_hide">
+  <% hide_if_editing(:div, element) do %>
+    <%= label_tag "custom_form_elements_#{index}_name", 'Label' %>
+    <%= text_field_tag("custom_form[elements][#{index}][label]", element.label) %>
     <%= hidden_field_tag("custom_form[elements][#{index}][type]", 'StringCustomFormElement') %>
-    <%= label_tag "custom_form_elements_#{index}_validations", 'Validations' %>
-    <% validations = element.available_validations -%>
-    <% existing_validations = element.custom_form_element_validations -%>
-    <% if validations.length > 0 -%>
-      <% validations.each do |key, value| -%>
-        <%= check_box_tag("custom_form[elements][#{index}][validations][#{key.to_s}]", '1', (existing_validations.detect {|v| v.key == key.to_s}) ? true : false) %>
-        <label for="custom_form_elements_<%= index %>_validations_<%= key.to_s %>"><%=h value[:display_name] %></label>
-      <% end -%>
-    <% end %>
     <br clear="all" />
-  </div>
+  <% end %>
   <%#= link_to('hide', {:anchor => ''}, :onclick => 'return false;', :class => 'hide_link') %>
   <%#= link_to('show', {:anchor => ''}, :onclick => 'return false;', :class => 'show_link', :style => 'display: none;') %>
   <%= link_to('delete', {:anchor => ''}, :onclick => 'deleteFormElement($(this)); return false;', :class => 'delete_link') %>

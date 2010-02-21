@@ -104,12 +104,28 @@ class CustomFormElement < ActiveRecord::Base
   #
   # Fetches all constructed attributes via #build_input_attributes and triggers the
   # building of validations on this element via #build_validations
+  #
+  # TODO this has been superceded by attributes=
   def build_attributes(attribute_hash)
     validations = attribute_hash.delete(:validations)
     if validations
       logger.debug("Validation options passed: #{validations}")
     end
     self.build_validations(validations)
+
+    logger.debug("Building #{self.class} attribute for form element")
+    self.custom_form_element_attributes = CustomFormElementAttribute.build_input_attributes(attribute_hash, self.class.config)
+  end
+
+  def attributes=(attribute_hash)
+    validations = attribute_hash.delete(:custom_form_element_validations)
+    if validations
+      logger.debug("Validation options passed: #{validations}")
+    end
+    self.build_validations(validations)
+
+    new_name = attribute_hash.delete(:name)
+    self.name = new_name if new_name
 
     logger.debug("Building #{self.class} attribute for form element")
     self.custom_form_element_attributes = CustomFormElementAttribute.build_input_attributes(attribute_hash, self.class.config)
@@ -177,10 +193,10 @@ class CustomFormElement < ActiveRecord::Base
   #
   def build_validations(validation_hash)
     self.custom_form_element_validations = []
-    return unless validation_hash.is_a?(Hash)
+    return unless validation_hash.is_a?(Array)
     
-    validation_hash.each do |key, value|
-      next unless key.respond_to?(:intern) && value == '1'
+    validation_hash.each do |key|
+      next unless key.respond_to?(:intern)
       next unless self.available_validations[key.intern]
 
       self.custom_form_element_validations << CustomFormElementValidation.new(:key => key.to_s)

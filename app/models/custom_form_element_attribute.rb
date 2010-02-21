@@ -111,7 +111,7 @@ class CustomFormElementAttribute < ActiveRecord::Base
   def class_values=(values)
     self.item_list = [] unless values.is_a?(String)
 
-    self.item_list = values.split(/\s*,+\s*/)
+    self.item_list = values.split(/[\s,]+/)
   end
   def class_values
     return item_list.join(', ')
