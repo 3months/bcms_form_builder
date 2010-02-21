@@ -9,7 +9,8 @@ class StringCustomFormElement < CustomFormElement
       :string, 'String Input',
       :collecting => true,
       :validations => {:presence_of => {:display_name => 'Not blank', :message => "%s cannot be blank"}},
-      :accessors => {:label => :direct_value}
+      :accessors => {:label => :direct_value, :classes => :class_values},
+      :readers => {:class_array => [:classes, :class_array]}
     )
     @@string_config.freeze
 

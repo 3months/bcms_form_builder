@@ -9,16 +9,12 @@
   <%= label_tag "custom_form_elements_#{index}_position", 'Position' %>
   <%= text_field_tag("custom_form[elements][#{index}][position]", element.position) %>
   <br clear="all" />
-  <%= label_tag "custom_form_elements_#{index}_text", 'Text' %>
-  <%= text_area_tag("custom_form[elements][#{index}][text]", element.text, :cols => 65, :rows => 3) %>
-  <br clear="all" />
-  <div class="to_hide">
-    <%= label_tag "custom_form_elements_#{index}_classes", 'Classes' %>
-    <%= text_field_tag("custom_form[elements][#{index}][classes]", element.classes) %>
-    <div class="instructions">Separate with commas.</div>
-    <br clear="all" />
+  <% hide_if_editing(:div, element) do %>
+    <%= label_tag "custom_form_elements_#{index}_text", 'Text' %>
+    <%= text_area_tag("custom_form[elements][#{index}][text]", element.text, :cols => 65, :rows => 3) %>
     <%= hidden_field_tag("custom_form[elements][#{index}][type]", 'DescriptionCustomFormElement') %>
-  </div>
+    <br clear="all" />
+  <% end %>
   <%#= link_to('hide', {:anchor => ''}, :onclick => 'return false;', :class => 'hide_link') %>
   <%#= link_to('show', {:anchor => ''}, :onclick => 'return false;', :class => 'show_link', :style => 'display: none;') %>
   <%= link_to('delete', {:anchor => ''}, :onclick => 'deleteFormElement($(this)); return false;', :class => 'delete_link') %>

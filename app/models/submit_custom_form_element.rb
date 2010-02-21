@@ -7,7 +7,8 @@ class SubmitCustomFormElement < CustomFormElement
 
     @@submit_config = CustomFormElementConfig.new(
       :submit, 'Submit Button',
-      :accessors => {:label => :direct_value}
+      :accessors => {:label => :direct_value, :classes => :class_values},
+      :readers => {:class_array => [:classes, :class_array]}
     )
     @@submit_config.freeze
 

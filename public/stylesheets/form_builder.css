@@ -1,4 +1,6 @@
 /* Admin styles */
+.hidden { display:none; }
+
 form h3 {
     color: #36659D;
     text-transform: uppercase;

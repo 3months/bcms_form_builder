@@ -14,7 +14,9 @@ Gem::Specification.new do |s|
      "README"
   ]
   s.files = [
+    "app/controllers/cms/custom_form_elements_controller.rb",
     "app/controllers/cms/custom_forms_controller.rb",
+    "app/helpers/cms/custom_forms_helper.rb",
     "app/models/check_box_custom_form_element.rb",
     "app/models/custom_form.rb",
     "app/models/custom_form_element.rb",
@@ -31,7 +33,6 @@ Gem::Specification.new do |s|
     "app/models/title_custom_form_element.rb",
     "app/portlets/custom_form_basic_portlet.rb",
     "app/portlets/custom_form_success_portlet.rb",
-    "app/portlets/recent_news_portlet.rb",
     "app/views/cms/custom_forms/display/_check_box_element.html.erb",
     "app/views/cms/custom_forms/display/_description_element.html.erb",
     "app/views/cms/custom_forms/display/_radio_button_element.html.erb",
@@ -50,6 +51,16 @@ Gem::Specification.new do |s|
     "app/views/cms/custom_forms/forms/_title_element.html.erb",
     "app/views/cms/custom_forms/_form.html.erb",
     "app/views/cms/custom_forms/render.html.erb",
+    "app/views/cms/custom_form_elements/edit.html.erb",
+    "app/views/cms/custom_form_elements/index.html.erb",
+    "app/views/cms/custom_form_elements/_toolbar.html.erb",
+    "app/views/cms/custom_form_elements/forms/_check_box_custom_form_element.html.erb",
+    "app/views/cms/custom_form_elements/forms/_radio_button_custom_form_element.html.erb",
+    "app/views/cms/custom_form_elements/forms/_select_custom_form_element.html.erb",
+    "app/views/cms/custom_form_elements/forms/_string_custom_form_element.html.erb",
+    "app/views/cms/custom_form_elements/forms/_submit_custom_form_element.html.erb",
+    "app/views/cms/custom_form_elements/forms/_text_custom_form_element.html.erb",
+    "app/views/cms/form_builder/_cms_validation_options.html.erb",
     "app/views/portlets/custom_form_basic/_form.html.erb",
     "app/views/portlets/custom_form_basic/render.html.erb",
     "app/views/portlets/custom_form_success/_form.html.erb",
@@ -60,7 +71,6 @@ Gem::Specification.new do |s|
     "db/migrate/20100115022104_create_custom_form_element_validations.rb",
     "lib/bcms_form_builder.rb",
     "lib/bcms_form_builder/routes.rb",
-    "lib/bcms_form_builder/helpers.rb",
     "public/stylesheets/form_builder.css",
     "public/javascripts/form_builder.js",
     "rails/init.rb"
