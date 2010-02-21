@@ -1,0 +1,17 @@
+  <%= f.cms_text_field :name, :label => 'Identifier', :instructions => 'Name will not appear on form.' %>
+  <%= f.cms_text_field :label %>
+  <%= f.cms_text_field :classes, :instructions => 'Separate values with commas or spaces.' %>
+
+  <%= f.cms_text_area :options, :style => 'height: 100px;' %>
+
+  <% validations = @form_element.available_validations -%>
+  <% existing_validations = @form_element.custom_form_element_validations -%>
+  <% if validations.length > 0 -%>
+    <div class="fields text_fields">
+      <%= f.label :validations %>
+      <% validations.each do |key, value| -%>
+        <%= check_box_tag("radio_button_custom_form_element[custom_form_element_validations][]", key.to_s, (existing_validations.detect {|v| v.key == key.to_s}) ? true : false) %>
+        <label for="radio_button_custom_form_element_custom_form_element_validations_"><%=h value[:display_name] %></label>
+      <% end -%>
+    </div>
+  <% end %>

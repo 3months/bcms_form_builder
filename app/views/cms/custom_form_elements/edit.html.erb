@@ -1,0 +1,21 @@
+<% content_for(:html_head) do %>
+  <%= javascript_include_tag "cms/content_library" %>
+  <%= stylesheet_link_tag "cms/form_layout", "cms/content_library" %>
+<% end %>
+
+<% page_title "Content Library / Edit Custom Form Element" %>
+<% @toolbar_title = "Edit Custom Form Element" %>
+
+<%= render :partial => 'cms/custom_form_elements/toolbar' %>
+
+<% form_for(@form_element, :url => cms_custom_form_custom_form_element_path(:custom_form_id => @block.id, :id => @form_element.id)) do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => 'cms/shared/exception', :object => @exception if @exception %>
+
+  <% @form_element.load_element -%>
+  <%= render :partial => "cms/custom_form_elements/forms/#{block_form}", :locals => {:f => f} %>
+
+  <div class="buttons">
+    <%= lt_button_wrapper(f.submit("Save", :class => "submit", :tabindex => next_tabindex)) %>
+  </div>
+<% end %>

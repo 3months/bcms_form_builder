@@ -1,0 +1,29 @@
+<div class="fields text_editor_fields">
+  <% if cms_options[:label] %>
+    <%= f.label method, cms_options[:label] %>
+  <% else %>
+    <%= f.label method %>
+  <% end %>
+  <br />
+  <%= f.text_area method, options %>
+  <% if cms_options[:instructions] %>
+    <div class="instructions"><%=h cms_options[:instructions] %></div>
+    <br clear="all"/>  
+  <% end %>  
+</div>
+
+<% validations = @form_element.available_validations -%>
+<% existing_validations = @form_element.custom_form_element_validations -%>
+<% if validations.length > 0 -%>
+  <div class="fields text_fields">
+    <% if cms_options[:label] %>
+      <%= f.label method, cms_options[:label] %>
+    <% else %>
+      <%= f.label method %>
+    <% end %>
+      <% validations.each do |key, value| -%>
+        <%= check_box_tag("#{block_form}[custom_form_element_validations][]", key.to_s, (existing_validations.detect {|v| v.key == key.to_s}) ? true : false) %>
+        <label for="<%= block_form %>_custom_form_element_validations_"><%=h value[:display_name] %></label>
+      <% end -%>
+  </div>
+<% end %>
