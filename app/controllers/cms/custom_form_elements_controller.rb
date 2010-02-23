@@ -62,6 +62,7 @@ class Cms::CustomFormElementsController < Cms::ApplicationController
     def load_block_and_element
       load_block
       @form_element = CustomFormElement.find(params[:id], :conditions => ["custom_form_id = ?", @block.id])
+      @form_element.load_element
     end
 
 end
