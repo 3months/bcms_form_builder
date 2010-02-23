@@ -1,7 +1,4 @@
 class TitleCustomFormElement < CustomFormElement
-
-  validates_presence_of :tag
-  validates_length_of :tag, :maximum => 4
   
   @@title_config = nil
 
