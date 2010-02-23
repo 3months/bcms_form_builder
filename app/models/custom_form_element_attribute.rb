@@ -8,11 +8,15 @@ class CustomFormElementAttribute < ActiveRecord::Base
     attribute_hash.each do |k, v|
       next unless action = config.accessor_method(k.intern)
 
-      logger.debug("Assigning action #{v} to attribute #{action}")
-      attributes << new(:key => k, action => v)
+      attributes << build_input_attribute(k, v, action)
     end
 
     return attributes
+  end
+
+  def self.build_input_attribute(key, value, action)
+    logger.debug("Assigning action #{value} to attribute #{action}")
+    return new(:key => key, action => value)
   end
 
   def select_options=(options)

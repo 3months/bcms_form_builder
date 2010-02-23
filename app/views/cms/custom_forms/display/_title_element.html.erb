@@ -1,4 +1,4 @@
 <% element.load_element -%>
-<% content_tag(:legend, :class => (element.class_array || []).join(' ')) do %>
+<% content_tag(element.tag.nil? ? :h2 : element.tag.intern, :class => (element.class_array && element.class_array.length > 0) ? element.class_array.join(' ') : nil) do %>
   <%=h element.title %>
 <% end %>

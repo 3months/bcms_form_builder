@@ -145,6 +145,7 @@ class CustomFormElement < ActiveRecord::Base
 
     accessors.each do |key|
       build_read_method(key, self.class.config.accessor_db_key(key), self.class.config.accessor_method(key))
+      build_write_method(key, self.class.config.accessor_db_key(key), self.class.config.accessor_method(key))
     end
     readers.each do |key|
       build_read_method(key, self.class.config.reader_db_key(key), self.class.config.reader_method(key))
@@ -165,6 +166,32 @@ class CustomFormElement < ActiveRecord::Base
         return nil unless attribute
 
         return attribute.#{fetch_method.to_s}
+      end
+    /
+
+    logger.debug("Creating dynamic method as: #{new_method}")
+    instance_eval new_method
+  end
+
+  # build_write_method
+  #
+  # Create dynamic writer method named <method>=.  This updates or creates an
+  # element_attribute of type db_key, depending on whether one already exists for
+  # this element and then calls the <fetch_method> on the element_attribute to
+  # return the underlying values.
+  #
+  # TODO - there is a flaw here.  If the attribute does not exist it uses the <<
+  # operator, which for this has_many relationship, saves the record immediately
+  # if self is not new.  Not sure if this is dangerous behaviour at this point.
+  #
+  def build_write_method(method, db_key, put_method)
+    new_method = %Q/
+      def #{method.to_s}=(value)
+        attribute = self.custom_form_element_attributes.detect {|att| att.key == %Q-#{db_key.to_s}-}
+        unless attribute
+          attribute = CustomFormElementAttribute.build_input_attribute('#{db_key.to_s}', value, '#{put_method.to_s}')
+          self.custom_form_element_attributes << attribute
+        end
       end
     /
 

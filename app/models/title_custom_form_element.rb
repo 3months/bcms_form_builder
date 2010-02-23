@@ -1,5 +1,8 @@
 class TitleCustomFormElement < CustomFormElement
 
+  validates_presence_of :tag
+  validates_length_of :tag, :maximum => 4
+  
   @@title_config = nil
 
   def self.config
@@ -7,9 +10,8 @@ class TitleCustomFormElement < CustomFormElement
 
     @@title_config = CustomFormElementConfig.new(
       :title, 'Title',
-      :accessors => {:title => :direct_value, :classes => :class_values},
+      :accessors => {:title => :direct_value, :tag => :direct_value, :classes => :class_values},
       :readers => {:class_array => [:classes, :class_array]}
-
     )
     @@title_config.freeze
 
