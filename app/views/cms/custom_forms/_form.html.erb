@@ -2,6 +2,15 @@
     <%= javascript_include_tag 'form_builder' %>
     <%= stylesheet_link_tag 'form_builder' %>
 <% end %>
+
+<% unless @block.new_record? -%>
+  <% content_for :functions do %>
+    <%= link_to span_tag("Manage elements"), cms_custom_form_custom_form_elements_path(:custom_form_id => @block.id),
+        :id => "add_button",
+        :class => "spacer button#{ ' off' if action_name == 'new'}" %>
+  <% end %>
+<% end %>
+
 <% session[:form_builder] = {:element_index => 0} %>
 <%= f.cms_text_field :name %>
 <%= f.cms_text_field :email, :instructions => 'Form submission data sent to this address' %>

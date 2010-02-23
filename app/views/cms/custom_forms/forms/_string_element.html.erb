@@ -1,10 +1,9 @@
-<h3>String element</h3>
+<h3>String input</h3>
 <% index ||= (session[:form_builder][:element_index] += 1) -%>
 <div class="fields text_fields">
   <%  element.load_element -%>
   <%= label_tag "custom_form_elements_#{index}_name", 'Identifier' %>
   <%= text_field_tag("custom_form[elements][#{index}][name]", element.name) %>
-  <div class="instructions">Name will not appear on form.</div>
   <br clear="all" />
   <%= label_tag "custom_form_elements_#{index}_position", 'Position' %>
   <%= text_field_tag("custom_form[elements][#{index}][position]", element.position) %>
@@ -15,8 +14,5 @@
     <%= hidden_field_tag("custom_form[elements][#{index}][type]", 'StringCustomFormElement') %>
     <br clear="all" />
   <% end %>
-  <%#= link_to('hide', {:anchor => ''}, :onclick => 'return false;', :class => 'hide_link') %>
-  <%#= link_to('show', {:anchor => ''}, :onclick => 'return false;', :class => 'show_link', :style => 'display: none;') %>
-  <%= link_to('delete', {:anchor => ''}, :onclick => 'deleteFormElement($(this)); return false;', :class => 'delete_link') %>
+  <%= render :partial => 'cms/custom_forms/forms/element_management_links', :locals => {:element => element}  %>
 </div>
-<br clear="all" />

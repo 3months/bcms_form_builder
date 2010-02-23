@@ -30,7 +30,7 @@
 <% end %>
 
 <% page_title "Content Library / List Custom Form Elements" %>
-<% @toolbar_title = "List Custom Form Elements" %>
+<% @toolbar_title = "Custom Form Elements - #{@block.name}" %>
 
 <%= render :partial => 'cms/custom_form_elements/toolbar' %>
 
@@ -39,8 +39,7 @@
     <thead>
       <tr>
         <th class="name first" colspan="2"><div class="dividers">Name</div></th>
-        <th><div class="dividers">Type</div></th>
-        <th class="last" colspan="2"><div class="dividers">&nbsp;</div></th>
+        <th class="type last"><div class="dividers">Type</div></th>
       </tr>
     </thead>
     <tbody>
@@ -48,13 +47,11 @@
         <tr id="custom_form_element_<%= element.id %>">
           <td class="first"></td>
           <td class="name"><div class="dividers"><%=h element.name %></div></td>
-          <td><div class="dividers"><%=h element.class.to_s %></div></td>
-          <td><div class="dividers"><%= link_to('edit', edit_cms_custom_form_custom_form_element_path(:custom_form_id => @block.id, :id => element.id)) %></div></td>
-          <td class="last"></td>
+          <td class="type"><div class="dividers"><%=h element.class.to_s %></div></td>
         </tr>
       <% end -%>
       <tr>
-        <td colspan="5" class="buffer"></td>
+        <td colspan="3" class="buffer"></td>
       </tr>
     </tbody>
   </table>
@@ -62,24 +59,5 @@
   <div class="tr"></div>
   <div class="bl"></div>
   <div class="br"></div>
-
-
-  <div class="buttons">
-  <%= link_to('<span>Add Element</span>', {}, :class => "button") %>
-  <% form_tag(new_element_cms_custom_forms_path, :method => :get, :class => 'hidden') do %>
-    <select name="foo">
-      <option value="">-- select type --</option>
-    </select>
-    <div class="lt_button" style="display: inline;">
-      <img alt="" src="/images/cms/lt_button_l.gif"/>
-      <div class="lt_button_content" style="display: inline;">
-        <span>
-          <button class="submit" tabindex="4" value="true" name="custom_form[publish_on_save]" type="submit">Add</button>
-        </span>
-      </div>
-      <img style="margin-right: 10px;" alt="" src="/images/cms/lt_button_r.gif"/>
-    </div>
-
-  <% end %>
-  </div>
+  
 </div>
