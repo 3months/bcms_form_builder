@@ -9,7 +9,7 @@
       <%= f.label :validations %>
       <% validations.each do |key, value| -%>
         <%= check_box_tag("submit_custom_form_element[custom_form_element_validations][]", key.to_s, (existing_validations.detect {|v| v.key == key.to_s}) ? true : false) %>
-        <label for="submit_custom_form_element_custom_form_element_validations_"><%=h value[:display_name] %></label>
+        <span class="label"><%=h value[:display_name] %></span>
       <% end -%>
     </div>
   <% end %>
