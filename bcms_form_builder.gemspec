@@ -10,7 +10,6 @@ Gem::Specification.new do |s|
   s.description = %q{Custom form builder for public BCMS pages}
   s.email = %q{kim@3months.com}
   s.extra_rdoc_files = [
-    "LICENSE.txt",
      "README"
   ]
   s.files = [
@@ -35,7 +34,6 @@ Gem::Specification.new do |s|
     "app/portlets/custom_form_success_portlet.rb",
     "app/views/cms/custom_forms/display/_check_box_element.html.erb",
     "app/views/cms/custom_forms/display/_description_element.html.erb",
-    "app/views/cms/custom_forms/display/_element_management_links.html.erb"
     "app/views/cms/custom_forms/display/_radio_button_element.html.erb",
     "app/views/cms/custom_forms/display/_select_element.html.erb",
     "app/views/cms/custom_forms/display/_string_element.html.erb",
@@ -44,6 +42,7 @@ Gem::Specification.new do |s|
     "app/views/cms/custom_forms/display/_title_element.html.erb",
     "app/views/cms/custom_forms/forms/_check_box_element.html.erb",
     "app/views/cms/custom_forms/forms/_description_element.html.erb",
+    "app/views/cms/custom_forms/forms/_element_management_links.html.erb",
     "app/views/cms/custom_forms/forms/_radio_button_element.html.erb",
     "app/views/cms/custom_forms/forms/_select_element.html.erb",
     "app/views/cms/custom_forms/forms/_string_element.html.erb",
