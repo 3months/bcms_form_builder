@@ -15,6 +15,7 @@ class CustomFormElement < ActiveRecord::Base
   SUBCLASSES = [
     'TitleCustomFormElement',
     'DescriptionCustomFormElement',
+    'HtmlBlockCustomFormElement',
     'StringCustomFormElement',
     'TextCustomFormElement',
     'SelectCustomFormElement',
