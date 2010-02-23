@@ -6,12 +6,18 @@ form h3 {
     text-transform: uppercase;
     font-size: 1.3em;
     margin-bottom: 5px;
+    float:right;
 }
 
 form div.dyn_element {
     border: dotted 1px #36659D;
-    padding: 7px;
+    padding: 7px 7px 0px 7px;
     margin-bottom: 5px;
+}
+
+.dyn_element .text_fields {
+    padding-top: 0px;
+    background: none;
 }
 
 /* Public styles */

@@ -17,17 +17,29 @@ class Cms::CustomFormElementsController < Cms::ApplicationController
     load_block_and_element
     
   rescue ActiveRecord::RecordNotFound
-    redirect_to cms_custom_form_custom_form_elements_path
+    redirect_to cms_custom_forms_path
   end
 
   def update
     load_block_and_element
     
     @form_element.update_attributes!(params[block_form])
+
+    redirect_to cms_custom_form_custom_form_elements_path(:custom_form_id => @block.id)
   rescue ActiveRecord::RecordInvalid
-    
+    # do nothing - just rerender to display errors
   rescue ActiveRecord::RecordNotFound
-    redirect_to cms_custom_form_custom_form_elements_path
+    redirect_to cms_custom_forms_path
+  end
+
+  def destroy
+    load_block_and_element
+
+    @form_element.destroy
+    
+    redirect_to cms_custom_form_custom_form_elements_path(:custom_form_id => @block.id)
+  rescue ActiveRecord::RecordNotFound
+    redirect_to cms_custom_forms_path
   end
 
   protected
