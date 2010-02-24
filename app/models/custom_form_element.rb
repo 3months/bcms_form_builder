@@ -92,7 +92,7 @@ class CustomFormElement < ActiveRecord::Base
       latest_element.position = position
       latest_element.name = v.delete(:name)
 
-      latest_element.build_attributes(v)
+      latest_element.attributes = v
 
       logger.debug("Assigning type: #{latest_element.class} to form in position #{latest_element.position}")
     end
@@ -100,24 +100,23 @@ class CustomFormElement < ActiveRecord::Base
     return parent.custom_form_elements = new_elements
   end
 
+  #
+  # TODO this has been superceded by attributes=
+#  def build_attributes(attribute_hash)
+#    validations = attribute_hash.delete(:validations)
+#    if validations
+#      logger.debug("Validation options passed: #{validations}")
+#    end
+#    self.build_validations(validations)
+#
+#    logger.debug("Building #{self.class} attribute for form element")
+#    self.custom_form_element_attributes = CustomFormElementAttribute.build_input_attributes(attribute_hash, self.class.config)
+#  end
 
-  # build_attributes
+  # attributes=
   #
   # Fetches all constructed attributes via #build_input_attributes and triggers the
   # building of validations on this element via #build_validations
-  #
-  # TODO this has been superceded by attributes=
-  def build_attributes(attribute_hash)
-    validations = attribute_hash.delete(:validations)
-    if validations
-      logger.debug("Validation options passed: #{validations}")
-    end
-    self.build_validations(validations)
-
-    logger.debug("Building #{self.class} attribute for form element")
-    self.custom_form_element_attributes = CustomFormElementAttribute.build_input_attributes(attribute_hash, self.class.config)
-  end
-
   def attributes=(attribute_hash)
     validations = attribute_hash.delete(:custom_form_element_validations)
     if validations

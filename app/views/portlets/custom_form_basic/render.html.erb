@@ -1,5 +1,8 @@
-<% content_for :header do %>
+<% content_for :html_header do %>
   <%= stylesheet_link_tag 'form_builder' %>
+  <% if @form.attachment_file_path %>
+    <%= stylesheet_link_tag @form.attachment_file_path %>
+  <% end %>
 <% end %>
 
 <% if @form -%>

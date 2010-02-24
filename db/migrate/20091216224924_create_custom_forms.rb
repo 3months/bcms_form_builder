@@ -4,6 +4,8 @@ class CreateCustomForms < ActiveRecord::Migration
       t.string :name, :limit => 255
       t.string :email, :limit => 255
       t.string :success_url, :limit => 255
+      t.belongs_to :attachment
+      t.integer :attachment_version
     end
     
     ContentType.create!(:name => "CustomForm", :group_name => "CustomForm")

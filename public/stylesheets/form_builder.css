@@ -1,7 +1,7 @@
 /* Admin styles */
 .hidden { display:none; }
 
-form h3 {
+form.edit_custom_form h3, form.new_custom_form h3 {
     color: #36659D;
     text-transform: uppercase;
     font-size: 1.3em;
@@ -18,6 +18,15 @@ form div.dyn_element {
 .dyn_element .text_fields {
     padding-top: 0px;
     background: none;
+}
+
+.file_fields div.attachment_link img { margin:3px 0 0 0; }
+
+.file_fields div.attachment_link {
+  clear:left;
+  float:left;
+  margin-left:140px;
+  padding-top:5px;
 }
 
 /* Public styles */
