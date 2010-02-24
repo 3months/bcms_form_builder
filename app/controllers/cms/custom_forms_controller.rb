@@ -1,9 +1,5 @@
 class Cms::CustomFormsController < Cms::ContentBlockController
 
-  def edit_elements
-    load_block_draft
-  end
-
   # new_element_partial
   #
   # Renders the partial for a new CustomFormElement.  Gives the item a unique index
@@ -24,33 +20,28 @@ class Cms::CustomFormsController < Cms::ContentBlockController
     render :partial => "cms/custom_forms/forms/#{klass.config.name}_element", :locals => {:index => "new_#{index}", :element => element}
   end
 
-  def new_element
-    unless params[:type] && (klass = CustomFormElement.subclass(params[:type]))
-      redirect_to cms_custom_forms_url
-      return
-    end
-
-    begin
-      @form = CustomForm.find(params[:form_id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to cms_custom_forms_url
-      return
-    end
-
-    element = klass.new
-    @toolbar_title = "#{klass.config.display_name} for '#{@form.name}' custom form"
-
-    unless request.post?
-      render :template => "cms/custom_forms/forms/#{klass.config.name}_element", :locals => {:element => element}
-      return
-    end
-  end
-
-  def edit_element
-    @element = CustomFormElement.find(params[:element_id])
-  rescue ActiveRecord::RecordNotFound
-
-  end
+  # Superceded by custom_form_elements_controller
+#  def new_element
+#    unless params[:type] && (klass = CustomFormElement.subclass(params[:type]))
+#      redirect_to cms_custom_forms_url
+#      return
+#    end
+#
+#    begin
+#      @form = CustomForm.find(params[:form_id])
+#    rescue ActiveRecord::RecordNotFound
+#      redirect_to cms_custom_forms_url
+#      return
+#    end
+#
+#    element = klass.new
+#    @toolbar_title = "#{klass.config.display_name} for '#{@form.name}' custom form"
+#
+#    unless request.post?
+#      render :template => "cms/custom_forms/forms/#{klass.config.name}_element", :locals => {:element => element}
+#      return
+#    end
+#  end
 
   protected
 

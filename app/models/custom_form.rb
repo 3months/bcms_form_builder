@@ -1,5 +1,5 @@
 class CustomForm < ActiveRecord::Base
-  acts_as_content_block :versioned => false
+  acts_as_content_block :versioned => false, :belongs_to_attachment => true
 
   has_many :custom_form_elements, :order => "position ASC"
   validates_presence_of :name

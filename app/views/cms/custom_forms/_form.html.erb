@@ -15,6 +15,12 @@
 <%= f.cms_text_field :name %>
 <%= f.cms_text_field :email, :instructions => 'Form submission data sent to this address' %>
 <%= f.cms_text_field :success_url, :instructions => 'With or without domain.  eg. /form/completed or http://another-site.com/success' %>
+<%=
+  f.cms_file_field :attachment_file,
+    :label => "Custom Stylesheet",
+    :instructions => "Upload new version to replace existing CSS.",
+    :show_link => true
+%>
 
 <br clear="all" />
 
