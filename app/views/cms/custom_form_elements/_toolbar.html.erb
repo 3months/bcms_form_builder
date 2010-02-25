@@ -2,9 +2,13 @@
 
 <% content_for :functions do %>
 
-  <%= link_to span_tag("Add new element"), new_cms_custom_form_custom_form_element_path(:custom_form_id => @block.id),
+  <%= link_to span_tag("Add new element"), edit_cms_custom_form_path(:id => @block.id, :anchor => 'new_element'),
     :id => "add_button",
     :class => "spacer button#{ ' off' if action_name == 'new'}" %>
+
+  <%= link_to span_tag("Edit custom form"), edit_cms_custom_form_path(:id => @block.id),
+    :id => "edit_form_button",
+    :class => "button" %>
 
   <%= link_to span_tag("Edit element"), "#",
     :id => "edit_button",
