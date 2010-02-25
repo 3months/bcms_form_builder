@@ -1,5 +1,9 @@
   <%= f.cms_text_field :name, :label => 'Identifier', :instructions => 'Name will not appear on form.' %>
   <%= f.cms_text_field :label %>
+  <%= f.cms_text_field :default_value %>
+  <%= render(:partial => 'cms/form_builder/cms_check_box', :locals => {:f => f, :method => :disabled}) %>
+  <%= render(:partial => 'cms/form_builder/cms_check_box', :locals => {:f => f, :method => :exclude_from_results, :cms_options => {:label => 'Discard data'}}) %>
+  <%= render(:partial => 'cms/form_builder/cms_check_box', :locals => {:f => f, :method => :password, :cms_options => {:label => 'Password field'}}) %>
   <%= f.cms_text_field :classes, :instructions => 'Separate values with commas or spaces.' %>
 
   <% validations = @form_element.available_validations -%>
