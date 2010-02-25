@@ -43,11 +43,26 @@ class Cms::CustomFormsController < Cms::ContentBlockController
 #    end
 #  end
 
+  # order_elements
+  #
+  # Reassign position attribute for each element in params[:element_list_order].
+  # Always return success.
+  #
+  def order_elements
+    load_block
+
+    @block.reorder_elements!(params[:element_list_order]) if params[:element_list_order].is_a?(Array)
+
+    render :nothing => true, :code => 200
+  rescue ActiveRecord::RecordNotFound
+    render :nothing => true, :code => 200
+  end
+
   protected
 
     def check_permissions
       case action_name
-      when 'edit_elements'
+      when 'edit_elements', 'order_elements'
         raise Cms::Errors::AccessDenied unless current_user.able_to_edit?(@block)
       else
         super

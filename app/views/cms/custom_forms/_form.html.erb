@@ -1,5 +1,30 @@
 <% content_for :html_head do %>
     <%= javascript_include_tag 'form_builder' %>
+    <% javascript_tag do %>
+      $(document).ready(function(){
+          $('#element_list').sortable(
+            {axis: "y",
+            cursor: "move",
+            opacity: 0.4,
+            scroll: true,
+            update: function(){
+              $.ajax({
+                  type: 'post',
+                  axis: 'y',
+                  dropOnEmpty:false,
+                  handle: '.handle',
+                  cursor: 'crosshair',
+                  items: 'li',
+                  data: $('#element_list').sortable('serialize'),
+                  complete: function(request){
+                      $('#element_list').effect('highlight');
+                    },
+                  url: '<%= order_elements_cms_custom_form_path(:id => @block.id) %>'})
+              }
+            }
+          );
+      });
+    <% end %>
     <%= stylesheet_link_tag 'form_builder' %>
 <% end %>
 
@@ -24,13 +49,15 @@
 
 <br clear="all" />
 
-<% @block.custom_form_elements.each do |element| -%>
-  <div class="dyn_element">
-    <%= render(:partial => "cms/custom_forms/forms/#{element.class.config.name}_element", :locals => {:index => element.id, :element => element}) %>
-  </div>
-<% end -%>
-
-<div id="new_form_element"></div>
+<ul id="element_list">
+  <% @block.custom_form_elements.each do |element| -%>
+    <li class="dyn_element" id="element_list_order_<%= element.id %>">
+      <input class="hidden_order" type="hidden" name="element_order[]" value="<%= element.id %>" />
+      <%= render(:partial => "cms/custom_forms/forms/#{element.class.config.name}_element", :locals => {:index => element.id, :element => element}) %>
+    </li>
+  <% end -%>
+    <li id="new_form_element"></li>
+</ul>
 
 <div class="fields text_fields">
   <a name="new_element"></a>
@@ -42,3 +69,4 @@
     )
   %>
 </div>
+
