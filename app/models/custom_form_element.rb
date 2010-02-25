@@ -24,6 +24,10 @@ class CustomFormElement < ActiveRecord::Base
     'SubmitCustomFormElement'
   ]
 
+  CONFIG_DEFAULT_ACCESSORS = {
+    :exclude_from_results => :boolean_value
+  }
+
   # self.subclass
   #
   # Fetch class constant for class of type <string>.  Checks that <string> is a valid
@@ -230,8 +234,6 @@ class CustomFormElement < ActiveRecord::Base
     end
   end
 
-  # non_ar_validate
-  #
   def non_ar_validate(value)
     valid = true
     self.custom_form_element_validations.each do |validation|

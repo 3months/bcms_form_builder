@@ -6,9 +6,15 @@ class SelectCustomFormElement < CustomFormElement
     return @@select_config unless @@select_config.nil?
 
     @@select_config = CustomFormElementConfig.new(
-      :select, 'Select Input',
+      :select,
+      'Select Input',
       :collecting => true,
-      :accessors => {:label => :direct_value, :options => :select_options, :classes => :class_values},
+      :accessors => CONFIG_DEFAULT_ACCESSORS.merge(
+        :label => :direct_value,
+        :disabled => :boolean_value, # select tag's diabled attribute
+        :classes => :class_values,
+        :options => :select_options
+      ),
       :readers => {:options_array => [:options, :select_options_array], :class_array => [:classes, :class_array]}
     )
     @@select_config.freeze

@@ -6,9 +6,15 @@ class CheckBoxCustomFormElement < CustomFormElement
     return @@check_box_config unless @@check_box_config.nil?
 
     @@check_box_config = CustomFormElementConfig.new(
-      :check_box, 'Check Box Input',
+      :check_box,
+      'Check Box Input',
       :collecting => true,
-      :accessors => {:label => :direct_value, :options => :check_box_options, :classes => :class_values},
+      :accessors => CONFIG_DEFAULT_ACCESSORS.merge(
+        :label => :direct_value,
+        :disabled => :boolean_value, # input tag's diabled attribute
+        :classes => :class_values,
+        :options => :check_box_options
+      ),
       :readers => {:options_array => [:options, :check_box_options_array], :class_array => [:classes, :class_array]}
     )
     @@check_box_config.freeze

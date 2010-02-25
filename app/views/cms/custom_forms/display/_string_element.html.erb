@@ -5,7 +5,8 @@
         <label for="fieldLabel"><%=h element.label %></label>
     </div>
     <div class="fieldContent">
-        <%= text_field_tag("custom_form[#{string_to_html_name(element.name)}]", nil) %>
+        <% builder = element.password == true ? :password_field_tag : :text_field_tag %>
+        <%= send(builder, "custom_form[#{string_to_html_name(element.name)}]", element.default_value, :disabled => !!element.disabled) %>
         <% if errors_exist && flash["#{@portlet.instance_name}_errors"][element.name] -%>
           <span class="fieldErrors"><%= flash["#{@portlet.instance_name}_errors"][element.name].map {|e| e.message % element.name}.join(', ') %></span>
         <% end -%>

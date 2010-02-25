@@ -6,9 +6,15 @@ class RadioButtonCustomFormElement < CustomFormElement
     return @@radio_button_config unless @@radio_button_config.nil?
 
     @@radio_button_config = CustomFormElementConfig.new(
-      :radio_button, 'Radio Button Input',
+      :radio_button,
+      'Radio Button Input',
       :collecting => true,
-      :accessors => {:label => :direct_value, :options => :radio_button_options, :classes => :class_values},
+      :accessors => CONFIG_DEFAULT_ACCESSORS.merge(
+        :label => :direct_value,
+        :disabled => :boolean_value, # input tag's diabled attribute
+        :classes => :class_values,
+        :options => :radio_button_options
+      ),
       :readers => {:options_array => [:options, :radio_button_options_array], :class_array => [:classes, :class_array]}
     )
     @@radio_button_config.freeze

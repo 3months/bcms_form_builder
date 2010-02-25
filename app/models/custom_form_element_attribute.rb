@@ -131,6 +131,27 @@ class CustomFormElementAttribute < ActiveRecord::Base
     return self.value
   end
 
+  def boolean_value=(value)
+    case value
+    when true, '1'
+      self.value = '1'
+    when false, '0'
+      self.value = '0'
+    else
+      self.value = nil
+    end
+  end
+  def boolean_value
+    return case self.value
+    when '1'
+      true
+    when '0'
+      false
+    else
+      nil
+    end
+  end
+
   private
 
     def item_list=(array)
