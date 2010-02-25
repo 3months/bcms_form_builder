@@ -234,6 +234,8 @@ class CustomFormElement < ActiveRecord::Base
     end
   end
 
+  # non_ar_validate
+  #
   def non_ar_validate(value)
     valid = true
     self.custom_form_element_validations.each do |validation|
