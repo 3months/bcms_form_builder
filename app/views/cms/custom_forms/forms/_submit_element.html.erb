@@ -5,9 +5,6 @@
   <%= label_tag "custom_form_elements_#{index}_name", 'Identifier' %>
   <%= text_field_tag("custom_form[elements][#{index}][name]", element.name) %>
   <br clear="all" />
-  <%= label_tag "custom_form_elements_#{index}_position", 'Position' %>
-  <%= text_field_tag("custom_form[elements][#{index}][position]", element.position) %>
-  <br clear="all" />
   <% hide_if_editing(:div, element) do %>
     <%= label_tag "custom_form_elements_#{index}_value", 'Display Label' %>
     <%= text_field_tag("custom_form[elements][#{index}][label]", element.label) %>

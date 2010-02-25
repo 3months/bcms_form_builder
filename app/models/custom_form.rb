@@ -36,6 +36,18 @@ class CustomForm < ActiveRecord::Base
     return base_position + 1
   end
 
+  def reorder_elements!(element_order)
+    elements = self.custom_form_elements
+    elements.each do |el|
+      element_order << el.id.to_s unless element_order.include?(el.id.to_s)
+    end
+    elements.sort! {|a, b| element_order.index(a.id.to_s) <=> element_order.index(b.id.to_s)}
+
+    elements.each_with_index do |el, i|
+      el.update_attribute(:position, i + 1)
+    end
+  end
+
   private
 
     # validate_elements

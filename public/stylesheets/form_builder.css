@@ -9,7 +9,7 @@ form.edit_custom_form h3, form.new_custom_form h3 {
     float:right;
 }
 
-form div.dyn_element {
+form li.dyn_element {
     border: dotted 1px #36659D;
     padding: 7px 7px 0px 7px;
     margin-bottom: 5px;
