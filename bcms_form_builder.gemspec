@@ -71,6 +71,7 @@ Gem::Specification.new do |s|
     "app/views/cms/custom_form_elements/forms/_title_custom_form_element.html.erb",
     "app/views/cms/form_builder/_cms_check_box.html.erb",
     "app/views/cms/form_builder/_cms_file_field.html.erb",
+    "app/views/cms/form_builder/_cms_options_collection.html.erb",
     "app/views/cms/form_builder/_cms_validation_options.html.erb",
     "app/views/portlets/custom_form_basic/_form.html.erb",
     "app/views/portlets/custom_form_basic/render.html.erb",
