@@ -54,10 +54,13 @@ Supported Fields
 
 Instructions
 
-IMPORTANT: There is currently an issue getting form helpers to load from the gem
-so you must add the following line to the bottom of your environment.rb:
+** IMPORTANT: There is currently an issue getting form helpers to load from the gem
+** so you must add the following line to the bottom of your environment.rb:
 
-ActionView::Base.default_form_builder = Cms::CustomFormBuilder
+** ActionView::Base.default_form_builder = Cms::CustomFormBuilder
+
+** UPDATE: This has been repaired and this line should no longer be required.  I will
+** remove this instruction from future releases.
 
 There are either two or three steps to setting up your custom form:
 

@@ -20,8 +20,3 @@ class Cms::CustomFormBuilder < Cms::FormBuilder
   end
   
 end
-
-# This inclusion works when loaded as a gem, however when built into the application
-# (ie. initial development of this module) this line is needed at the end of
-# environment.rb
-ActionView::Base.default_form_builder = Cms::CustomFormBuilder
