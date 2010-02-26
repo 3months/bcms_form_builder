@@ -2,7 +2,6 @@ class Cms::CustomFormElementsController < Cms::ApplicationController
   layout 'cms/content_library'
 
   helper "cms/custom_forms"
-
   helper_method :block_form, :content_type
 
   def index

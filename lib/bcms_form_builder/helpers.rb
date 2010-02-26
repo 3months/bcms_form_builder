@@ -7,4 +7,5 @@ module FormBuilder
 
   end
 end
+
 ActionView::Base.send(:include, FormBuilder::Helpers)

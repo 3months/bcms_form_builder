@@ -1,0 +1,12 @@
+  <div class="fields text_fields">
+    <label><%=h method.to_s.capitalize %></label>
+    <div style="margin-left: 140px">
+      <ul id="option_list">
+        <% @form_element.send(method).each do |option| -%>
+          <%= render(:partial => "cms/custom_form_elements/forms/#{options[:element_type]}_#{method}", :locals => {:option => option, :template => false}) %>
+        <% end -%>
+        <%= render(:partial => "cms/custom_form_elements/forms/#{options[:element_type]}_#{method}", :locals => {:option => {}, :template => true}) %>
+      </ul>
+      <%= link_to('add option', '#', :onclick => 'newFormOption(); return false;', :class => 'new_option') %>
+    </div>
+  </div>
