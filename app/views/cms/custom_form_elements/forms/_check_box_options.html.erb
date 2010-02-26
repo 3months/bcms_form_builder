@@ -1,0 +1,6 @@
+          <% content_tag(:li, :class => 'option', :style => template ? 'display: none;': nil, :id => template ? 'option_template' : nil) do %>
+            <span class="column"><%= link_to('delete', '#', :onclick => 'deleteFormOption($(this)); return false;') %></span>
+            <span class="column"><%= text_field_tag('check_box_custom_form_element[options][][label]', option[:label], :style => 'width: 100px;') %></span>
+            <span class="column"><%= text_field_tag('check_box_custom_form_element[options][][value]', option[:value], :style => 'width: 80px;') %></span>
+            <span class="column"><%= check_box_tag('check_box_custom_form_element[options][][checked]', '1', option[:checked], :style => 'width: 80px;') %>&nbsp;checked?</span>
+          <% end %>

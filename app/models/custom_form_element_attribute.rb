@@ -20,95 +20,80 @@ class CustomFormElementAttribute < ActiveRecord::Base
   end
 
   def select_options=(options)
-    self.item_list = [] unless options.is_a?(String)
-
-    lines = options.map {|s| s.chomp}
-    flattened = lines.map do |o|
-      parts = o.split(/\s*\|\s*/)
-      parts.length == 2 ? parts.join(';') : [parts.first, parts.first.downcase].join(';')
+    unless options.is_a?(Array)
+      self.item_list = []
+      return []
     end
+
+    flattened = options.map do |option|
+      parts = [option[:label], option[:value]].delete_if {|part| part.to_s.strip.blank?}
+      if parts.length > 0
+        [
+          parts.length == 2 ? parts.join(';') : [parts.first, parts.first.downcase].join(';'),
+          option[:selected] == '1' ? 't' : 'f'
+        ].join(';')
+      else
+        nil
+      end
+    end.compact
     self.item_list = flattened
   end
   def select_options
     return item_list.map do |o|
       parts = o.split(/;/)
-      if parts.length == 2
-        [parts.first, parts.last].join('|')
-      else
-        [parts.first, parts.first].join('|')
-      end
-    end.join("\n")
-  end
-  def select_options_array
-    return item_list.map do |o|
-      parts = o.split(/;/)
-      if parts.length == 2
-        [parts.first, parts.last]
-      else
-        [parts.first, parts.first]
-      end
+      {:label => parts[0], :value => parts[1], :selected => parts[2] == 't'}
     end
   end
 
   def check_box_options=(options)
-    self.item_list = [] unless options.is_a?(String)
-
-    lines = options.map {|s| s.chomp}
-    flattened = lines.map do |o|
-      parts = o.split(/\s*\|\s*/)
-      parts.length == 2 ? "#{parts.first == 't' ? 't' : 'f'};#{parts.last}" : "f;#{parts.first}"
+    unless options.is_a?(Array)
+      self.item_list = []
+      return []
     end
+
+    flattened = options.map do |option|
+      parts = [option[:label], option[:value]].delete_if {|part| part.to_s.strip.blank?}
+      if parts.length > 0
+        [
+          parts.length == 2 ? parts.join(';') : [parts.first, parts.first.downcase].join(';'),
+          option[:checked] == '1' ? 't' : 'f'
+        ].join(';')
+      else
+        nil
+      end
+    end.compact
     self.item_list = flattened
   end
   def check_box_options
     return item_list.map do |o|
       parts = o.split(/;/)
-      if parts.length == 1
-        parts.first
-      else
-        parts.first == 't' ? "t|#{parts.last}" : "f|#{parts.last}"
-      end
-    end.join("\n")
-  end
-  def check_box_options_array
-    return item_list.map do |o|
-      parts = o.split(/;/)
-      if parts.length == 1
-        [false, parts.first]
-      else
-        parts.first == 't' ? [true, parts.last] : [false, parts.last]
-      end
+      {:label => parts[0], :value => parts[1], :checked => parts[2] == 't'}
     end
   end
 
   def radio_button_options=(options)
-    self.item_list = [] unless options.is_a?(String)
-
-    lines = options.map {|s| s.chomp}
-    flattened = lines.map do |o|
-      parts = o.split(/\s*\|\s*/)
-      parts.length == 2 ? "#{parts.first == 't' ? 't' : 'f'};#{parts.last}" : "f;#{parts.first}"
+    unless options.is_a?(Array)
+      self.item_list = []
+      return []
     end
+
+    flattened = options.map do |option|
+      parts = [option[:label], option[:value]].delete_if {|part| part.to_s.strip.blank?}
+      if parts.length > 0
+        [
+          parts.length == 2 ? parts.join(';') : [parts.first, parts.first.downcase].join(';'),
+          option[:selected] == '1' ? 't' : 'f'
+        ].join(';')
+      else
+        nil
+      end
+    end.compact
     self.item_list = flattened
   end
   def radio_button_options
     return item_list.map do |o|
       parts = o.split(/;/)
-      if parts.length == 1
-        parts.first
-      else
-        parts.first == 't' ? "t|#{parts.last}" : "#{parts.last}"
-      end
-    end.join("\n")
-  end
-  def radio_button_options_array
-    return item_list.map do |o|
-      parts = o.split(/;/)
-      if parts.length == 1
-        [false, parts.first]
-      else
-        parts.first == 't' ? [true, parts.last] : [false, parts.last]
-      end
+      {:label => parts[0], :value => parts[1], :selected => parts[2] == 't'}
     end
   end
 
@@ -118,10 +103,7 @@ class CustomFormElementAttribute < ActiveRecord::Base
     self.item_list = values.split(/[\s,]+/)
   end
   def class_values
-    return item_list.join(', ')
-  end
-  def class_array
-    return item_list
+    return item_list.join(' ')
   end
 
   def direct_value=(value)

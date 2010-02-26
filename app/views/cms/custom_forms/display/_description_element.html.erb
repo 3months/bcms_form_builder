@@ -1,4 +1,4 @@
 <% element.load_element -%>
-<% content_tag(:p, :class => (element.class_array || []).join(' ')) do %>
+<% content_tag(:p, :class => element.classes) do %>
   <%=h element.text %>
 <% end %>

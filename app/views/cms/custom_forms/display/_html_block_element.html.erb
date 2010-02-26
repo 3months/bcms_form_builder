@@ -1,4 +1,4 @@
 <% element.load_element -%>
-<% content_tag(element.tag.nil? ? :div : element.tag.intern, :class => (element.class_array || []).join(' ')) do %>
+<% content_tag(element.tag.nil? ? :div : element.tag.intern, :class => element.classes) do %>
   <%= element.text %>
 <% end %>

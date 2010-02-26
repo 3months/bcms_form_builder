@@ -4,10 +4,10 @@
         <label for="fieldLabel"><%=h element.label %></label>
     </div>
     <div class="fieldContent">
-      <% element.options_array.each do |option| -%>
+      <% element.options.each do |option| -%>
         <span class="pair">
-          <%= check_box_tag("custom_form[#{element.html_attribute_name}][#{string_to_html_name(option.last)}]", '1', option.first, :disabled => !!element.disabled) %>
-          <label for="custom_form_<%= element.html_attribute_name %>_<%= string_to_html_name(option.last) %>"><%=h option.last %></label>
+          <%= check_box_tag("custom_form[#{element.html_attribute_name}][#{string_to_html_name(option[:name])}]", '1', option[:checked], :disabled => !!element.disabled, :class => element.classes) %>
+          <label for="custom_form_<%= element.html_attribute_name %>_<%= string_to_html_name(option[:name]) %>"><%=h option[:label] %></label>
         </span>
       <% end -%>
     </div>

@@ -3,7 +3,20 @@
   <%= f.cms_text_field :classes, :instructions => 'Separate values with commas or spaces.' %>
   <%= render(:partial => 'cms/form_builder/cms_check_box', :locals => {:f => f, :method => :disabled}) %>
   <%= render(:partial => 'cms/form_builder/cms_check_box', :locals => {:f => f, :method => :exclude_from_results, :cms_options => {:label => 'Discard data'}}) %>
-  <%= f.cms_text_area :options, :style => 'height: 100px;' %>
+
+  <div class="fields text_fields">
+    <label>Options</label>
+    <div style="margin-left: 140px">
+      <ul id="option_list">
+        <% @form_element.options.each do |option| -%>
+          <%= render(:partial => 'cms/custom_form_elements/forms/check_box_options', :locals => {:option => option, :template => false}) %>
+        <% end -%>
+        <%= render(:partial => 'cms/custom_form_elements/forms/check_box_options', :locals => {:option => {}, :template => true}) %>
+      </ul>
+      <%= link_to('add option', '#', :onclick => 'newFormOption(); return false;', :class => 'new_option') %>
+    </div>
+  </div>
+  <%#= f.cms_text_area :options, :style => 'height: 100px;' %>
 
   <% validations = @form_element.available_validations -%>
   <% existing_validations = @form_element.custom_form_element_validations -%>

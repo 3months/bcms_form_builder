@@ -16,8 +16,8 @@ class StringCustomFormElement < CustomFormElement
         :password => :boolean_value, # whether text input should be of type password
         :default_value => :direct_value, # input tag's value attribute
         :classes => :class_values
-      ),
-      :readers => {:class_array => [:classes, :class_array]}
+      )#,
+      #:readers => {:class_array => [:classes, :class_array]}
     )
     @@string_config.freeze
 

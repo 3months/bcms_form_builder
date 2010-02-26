@@ -14,8 +14,8 @@ class CheckBoxCustomFormElement < CustomFormElement
         :disabled => :boolean_value, # input tag's diabled attribute
         :classes => :class_values,
         :options => :check_box_options
-      ),
-      :readers => {:options_array => [:options, :check_box_options_array], :class_array => [:classes, :class_array]}
+      )#,
+      #:readers => {:options_array => [:options, :check_box_options_array], :class_array => [:classes, :class_array]}
     )
     @@check_box_config.freeze
 

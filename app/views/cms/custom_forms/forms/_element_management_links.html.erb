@@ -2,5 +2,5 @@
     <% unless element.new_record? -%>
       <%= link_to('edit', edit_cms_custom_form_custom_form_element_path(:custom_form_id => @block.id, :id => element.id)) %> |
     <% end -%>
-    <%= link_to('delete', {:anchor => ''}, :onclick => 'deleteFormElement($(this)); return false;', :class => 'delete_link') %>
+    <%= link_to('delete', '#', :onclick => 'deleteFormElement($(this)); return false;', :class => 'delete_link') %>
   </div>

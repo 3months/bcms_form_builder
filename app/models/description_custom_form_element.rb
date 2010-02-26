@@ -12,8 +12,8 @@ class DescriptionCustomFormElement < CustomFormElement
         :text => :direct_value,
         :classes => :class_values
         # delete some defaults for this non-input element
-      ).delete_if{ |k, v| [:exclude_from_results].include?(k) },
-      :readers => {:class_array => [:classes, :class_array]}
+      ).delete_if{ |k, v| [:exclude_from_results].include?(k) }#,
+      #:readers => {:class_array => [:classes, :class_array]}
     )
     @@description_config.freeze
 
