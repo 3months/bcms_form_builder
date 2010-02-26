@@ -8,10 +8,6 @@
   <% hide_if_editing(:div, element) do %>
     <%= label_tag "custom_form_elements_#{index}_name", 'Label' %>
     <%= text_field_tag("custom_form[elements][#{index}][label]", element.label) %>
-    <br clear="all" />
-    <%= label_tag "custom_form_elements_#{index}_options", 'Options' %>
-    <%= text_area_tag("custom_form[elements][#{index}][options]", element.options, :cols => 35, :rows => 4) %>
-    <div class="instructions">Enter one label per line.</div>
     <%= hidden_field_tag("custom_form[elements][#{index}][type]", 'RadioButtonCustomFormElement') %>
     <br clear="all" />
   <% end %>
