@@ -9,6 +9,7 @@ class SelectCustomFormElement < CustomFormElement
       :select,
       'Select Input',
       :collecting => true,
+      # TODO add 'not blank' style validation to selects
       :accessors => CONFIG_DEFAULT_ACCESSORS.merge(
         :label => :direct_value,
         :disabled => :boolean_value, # select tag's diabled attribute

@@ -9,6 +9,7 @@ class StringCustomFormElement < CustomFormElement
       :string,
       'String Input',
       :collecting => true,
+      # TODO add Regexp style matches validation for string and length validation
       :validations => {:presence_of => {:display_name => 'Not blank', :message => "%s cannot be blank"}},
       :accessors => CONFIG_DEFAULT_ACCESSORS.merge(
         :label => :direct_value,

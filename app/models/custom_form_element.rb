@@ -84,9 +84,12 @@ class CustomFormElement < ActiveRecord::Base
       else
         new_elements << old_elements.detect {|old_el| old_el.id == k.to_i} || klass.new
       end
-      
+
+      # An initial version had the position passable from the UI, however now
+      # we don't support this.  Leaving this condition in so we can support it
+      # later...
       position = v.delete(:position)
-      if position.match(/^\d+$/)
+      if position.to_s.match(/^\d+$/)
         position = position.to_i
       else
         position = base_position
@@ -103,19 +106,6 @@ class CustomFormElement < ActiveRecord::Base
 
     return parent.custom_form_elements = new_elements
   end
-
-  #
-  # TODO this has been superceded by attributes=
-#  def build_attributes(attribute_hash)
-#    validations = attribute_hash.delete(:validations)
-#    if validations
-#      logger.debug("Validation options passed: #{validations}")
-#    end
-#    self.build_validations(validations)
-#
-#    logger.debug("Building #{self.class} attribute for form element")
-#    self.custom_form_element_attributes = CustomFormElementAttribute.build_input_attributes(attribute_hash, self.class.config)
-#  end
 
   # attributes=
   #

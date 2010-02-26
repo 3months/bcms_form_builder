@@ -42,6 +42,8 @@ class CustomFormBasicPortlet < Portlet
       store_hash_in_flash('submission', {:custom_form_id => @form.id})
       @form.success_url
     else
+      # TODO have not tested failure mode thoroughly - some validation messages may be
+      # a bit rough and/or exploding
       store_params_in_flash
       store_errors_in_flash(@custom_form.errors)
       url_for_failure

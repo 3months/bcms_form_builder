@@ -9,6 +9,7 @@ class CheckBoxCustomFormElement < CustomFormElement
       :check_box,
       'Check Box Input',
       :collecting => true,
+      # TODO add 'not blank' style validation to check box set and maximum number checked validation
       :accessors => CONFIG_DEFAULT_ACCESSORS.merge(
         :label => :direct_value,
         :disabled => :boolean_value, # input tag's diabled attribute

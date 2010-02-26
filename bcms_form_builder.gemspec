@@ -82,6 +82,7 @@ Gem::Specification.new do |s|
     "db/migrate/20091217214512_create_custom_form_element_attributes.rb",
     "db/migrate/20100115022104_create_custom_form_element_validations.rb",
     "lib/bcms_form_builder.rb",
+    "lib/bcms_form_builder/custom_form_builder.rb",
     "lib/bcms_form_builder/routes.rb",
     "lib/bcms_form_builder/helpers.rb",
     "public/stylesheets/form_builder.css",

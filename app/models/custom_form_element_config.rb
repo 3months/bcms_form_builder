@@ -1,3 +1,4 @@
+# TODO Document/comment me please - I forget what I was built for!!
 class CustomFormElementConfig
 
   attr_reader :name, :display_name

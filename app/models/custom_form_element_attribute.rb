@@ -1,3 +1,4 @@
+# TODO Document/comment me please - I forget what I was built for!!
 class CustomFormElementAttribute < ActiveRecord::Base
 
   belongs_to :custom_form_element
