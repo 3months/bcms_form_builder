@@ -1,5 +1,6 @@
 <% content_for :html_head do %>
     <%= javascript_include_tag 'form_builder' %>
+<<<<<<< HEAD:app/views/cms/custom_forms/_form.html.erb
     <% unless @block.new_record? -%>
       <% javascript_tag do %>
         $(document).ready(function(){
@@ -27,6 +28,33 @@
         });
       <% end %>
     <% end -%>
+=======
+    <% javascript_tag do %>
+      $(document).ready(function(){
+          $('#element_list').sortable(
+            {axis: "y",
+            cursor: "move",
+            opacity: 0.4,
+            scroll: true,
+            update: function(){
+              $.ajax({
+                  type: 'post',
+                  axis: 'y',
+                  dropOnEmpty:false,
+                  handle: '.handle',
+                  cursor: 'crosshair',
+                  items: 'li',
+                  data: $('#element_list').sortable('serialize'),
+                  complete: function(request){
+                      $('#element_list').effect('highlight');
+                    },
+                  url: '<%= order_elements_cms_custom_form_path(:id => @block.id) %>'})
+              }
+            }
+          );
+      });
+    <% end %>
+>>>>>>> 3fd048bcdb84520b748659a1a270fdc92648956b:app/views/cms/custom_forms/_form.html.erb
     <%= stylesheet_link_tag 'form_builder' %>
 <% end %>
 
