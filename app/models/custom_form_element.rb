@@ -107,8 +107,6 @@ class CustomFormElement < ActiveRecord::Base
     return parent.custom_form_elements = new_elements
   end
 
-<<<<<<< HEAD:app/models/custom_form_element.rb
-=======
   #
   # TODO this has been superceded by attributes=
 #  def build_attributes(attribute_hash)
@@ -122,7 +120,6 @@ class CustomFormElement < ActiveRecord::Base
 #    self.custom_form_element_attributes = CustomFormElementAttribute.build_input_attributes(attribute_hash, self.class.config)
 #  end
 
->>>>>>> 3fd048bcdb84520b748659a1a270fdc92648956b:app/models/custom_form_element.rb
   # attributes=
   #
   # Fetches all constructed attributes via #build_input_attributes and triggers the
