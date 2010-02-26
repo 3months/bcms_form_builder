@@ -2,6 +2,7 @@
     <label><%=h method.to_s.capitalize %></label>
     <div style="margin-left: 140px">
       <ul id="option_list">
+        <li style="margin-bottom: 10px;"><div class="column delete" style="float:left; width: 75px;">&nbsp;</div><div class="column label" style="float:left; width: 100px;">Label</div><div class="column value" style="float:left; width: 100px;">Value</div></li>
         <% @form_element.send(method).to_a.each do |option| -%>
           <%= render(:partial => "cms/custom_form_elements/forms/#{options[:element_type]}_#{method}", :locals => {:option => option, :template => false}) %>
         <% end -%>
