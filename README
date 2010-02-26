@@ -1,0 +1,82 @@
+# Form Buider module
+
+Version 0.2
+Kimmy Chirnside
+kimmy.chirnside@gmail.com
+
+I welcome all feedback and suggestions regarding functionality, working or not.  Or
+suggestions of how it could work better.
+
+This module allows BrowserCMS site administrators to create 'simple' forms for public
+users to submit.  Administrators can make any number of CustomForms and for each,
+create a list of CustomFormElements.  These elements make up the 'fields' of the form,
+including non input fields such as a title or a HTML/WYSIWYG block.
+
+It then defines portlets to display the configured forms on the website.  Including
+use of uploaded stylesheets.
+
+Features
+
+* Management of forms
+* Management of fields within a form
+* Simple field validation
+* Emailing of submission results
+* Customisable form layout (portlet)
+* Custom CSS upload
+* Error messaging to public user (limited - needs work!!)
+
+Supported Fields
+
+* Title - Title style field (not necessarily a title) whose container can be overridden
+  although defaults to <h2>
+* Description - Generic text field but not necessarily for use as a description.
+  Container can be overridden although defaults to <p>
+* HTML Block - WYSIWYG HTML text block for generic use.  Use it to display large
+  amounts of non-form type content within the form.
+* String Input - Standard <input type="text" />.  Can be specified to behave as a
+  password field.  Data is submitted to email unless otherwise specified.
+* Text Input - Standard <textarea>.  Data is submitted to email unless otherwise
+  specified.
+* Check Box Input - Set of <checkbox> inputs.  Use this for both boolean response
+  and multiselect response requirements.  Data is submitted to email unless otherwise
+  specified.
+* Radio Button Input - Set of <radio> inputs.  Although many can be marked as
+  'selected' in admin interace, only the first that is marked will be selected on
+  the public form.  Data is submitted to email unless otherwise specified.
+* Select Input - <select> and <option> inputs.  Although many can be marked as
+  'selected' in admin interace, only the first that is marked will be selected on
+  the public form.  Data is submitted to email unless otherwise specified.
+* Submit Input - Standard <input type="submit" />.  Supports text value but no
+  other button types at present.  On the backlog to add more button types at the
+  moment.
+
+Instructions
+
+There are either two or three steps to setting up your custom form:
+
+1. Configure and create your custom form and it's elements through the admin interface.
+  First create the form object specifying a name, the email address to which the results
+  will be sent, the success url, any custom stylesheet file and the form elements.
+
+  Note that on the create/edit custom form screen, the elements are not overly
+  customisable.  At present you create the elements here and customise them one by
+  one, later.  This is currently the only place where elements can be created.
+  Once saved and in edit mode, the already saved elements can be ordered using
+  drag n drop without clicking 'save'.
+
+  Validation.  Some elements support validation options.  These validation options
+  such as 'not blank' are validation to be applied when the public user submits
+  the form.
+
+2. Create a 'custom_form_basic' portlet and add it to a page.
+  This gives you options to add a name, email address to send results to (note that
+  this overrides the address set in the form object and can be left blank) and
+  which custom form to use.
+
+  Create this after you have created the form to associate it to.  Then drop the
+  portlet onto a public page.
+
+3. Either create your own success page, or use the 'custom_form_succcess' portlet to
+  create one.  NOTE: there is little to no advantage to the latter at this stage,
+  however it is intended that this portlet may display submission related data at
+  some point.
