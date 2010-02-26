@@ -13,8 +13,8 @@ class HtmlBlockCustomFormElement < CustomFormElement
         :text => :direct_value,
         :tag => :direct_value,
         :classes => :class_values
-      ),
-      :readers => {:class_array => [:classes, :class_array]}
+      )#,
+      #:readers => {:class_array => [:classes, :class_array]}
     )
     @@html_block_config.freeze
 

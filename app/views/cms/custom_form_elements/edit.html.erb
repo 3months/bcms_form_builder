@@ -1,6 +1,6 @@
 <% content_for(:html_head) do %>
-  <%= javascript_include_tag "cms/content_library" %>
-  <%= stylesheet_link_tag "cms/form_layout", "cms/content_library" %>
+  <%= javascript_include_tag "cms/content_library", 'form_builder' %>
+  <%= stylesheet_link_tag "cms/form_layout", "cms/content_library", 'form_builder' %>
 <% end %>
 
 <% page_title "Content Library / Edit Custom Form Element" %>

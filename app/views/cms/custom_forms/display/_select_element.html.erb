@@ -4,10 +4,12 @@
         <label for="custom_form_<%= string_to_html_name(element.name) %>"><%=h element.label %></label>
     </div>
     <div class="fieldContent">
+      <% selected = element.options.detect {|op| op[:selected]} -%>
       <%= select_tag(
         "custom_form[#{string_to_html_name(element.name)}]",
-        options_for_select([['-- select --', '']] + element.options_array),
-        :disabled => !!element.disabled
+        options_for_select([['-- select --', '']] + element.options.map {|option| [option[:label], option[:value]]}, selected ? selected[:value] : nil),
+        :disabled => !!element.disabled,
+        :class => element.classes
       ) %>
     </div>
 </div>

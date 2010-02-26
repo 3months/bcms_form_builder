@@ -14,8 +14,8 @@ class SelectCustomFormElement < CustomFormElement
         :disabled => :boolean_value, # select tag's diabled attribute
         :classes => :class_values,
         :options => :select_options
-      ),
-      :readers => {:options_array => [:options, :select_options_array], :class_array => [:classes, :class_array]}
+      )#,
+      #:readers => {:options_array => [:options, :select_options_array], :class_array => [:classes, :class_array]}
     )
     @@select_config.freeze
 

@@ -1,4 +1,4 @@
 <% element.load_element -%>
-<% content_tag(element.tag.nil? ? :h2 : element.tag.intern, :class => (element.class_array && element.class_array.length > 0) ? element.class_array.join(' ') : nil) do %>
+<% content_tag(element.tag.nil? ? :h2 : element.tag.intern, :class => element.classes) do %>
   <%=h element.title %>
 <% end %>

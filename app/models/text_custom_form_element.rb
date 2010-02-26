@@ -14,8 +14,8 @@ class TextCustomFormElement < CustomFormElement
         :disabled => :boolean_value, # textarea tag's diabled attribute
         :default_value => :direct_value, # textarea tag's value attribute
         :classes => :class_values
-      ),
-      :readers => {:class_array => [:classes, :class_array]}
+      )#,
+      #:readers => {:class_array => [:classes, :class_array]}
     )
     @@text_config.freeze
 

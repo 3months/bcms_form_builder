@@ -14,8 +14,8 @@ class RadioButtonCustomFormElement < CustomFormElement
         :disabled => :boolean_value, # input tag's diabled attribute
         :classes => :class_values,
         :options => :radio_button_options
-      ),
-      :readers => {:options_array => [:options, :radio_button_options_array], :class_array => [:classes, :class_array]}
+      )#,
+      #:readers => {:options_array => [:options, :radio_button_options_array], :class_array => [:classes, :class_array]}
     )
     @@radio_button_config.freeze
 

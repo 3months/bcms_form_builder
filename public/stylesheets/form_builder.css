@@ -29,6 +29,17 @@ form li.dyn_element {
   padding-top:5px;
 }
 
+.fields ul#option_list {
+  margin-bottom: 10px;
+}
+.fields ul#option_list li {
+  padding: 5px;
+}
+.fields a.new_option {
+  padding-left: 5px;
+}
+
+
 /* Public styles */
 .formSection {
 	width: 566px;
