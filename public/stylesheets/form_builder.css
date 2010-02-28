@@ -28,11 +28,11 @@ form li.dyn_element {
   margin-left:140px;
   padding-top:5px;
 }
-
-.fields ul#option_list {
-  margin-bottom: 10px;
+.fields table th {
+  padding: 5px;
+  font-weight: bold;
 }
-.fields ul#option_list li {
+.fields table td {
   padding: 5px;
 }
 .fields a.new_option {
