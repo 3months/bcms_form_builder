@@ -3,5 +3,5 @@
             <td class="delete"><%= content_tag(:div, link_to('delete', '#', :onclick => 'deleteFormOption($(this)); return false;'), :style => style) %></td>
             <td class="label"><%= content_tag(:div, text_field_tag('radio_button_custom_form_element[options][][label]', option[:label], :style => 'width: 100px;'), :style => style) %></td>
             <td class="value"><%= content_tag(:div, text_field_tag('radio_button_custom_form_element[options][][value]', option[:value], :style => 'width: 80px;'), :style => style) %></td>
-            <td class="check"><%= content_tag(:div, check_box_tag('radio_button_custom_form_element[options][][selected]', '1', option[:selected], :style => 'width: 80px;', :style => style)) + '&nbsp;checked?' %></td>
+            <td class="check"><%= content_tag(:div, check_box_tag('radio_button_custom_form_element[options][][selected]', '1', option[:selected], :style => 'width: 80px;') + '&nbsp;checked?', :style => style) %></td>
           <% end %>
