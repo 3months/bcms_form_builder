@@ -21,13 +21,11 @@ function deleteFormElement(link_el) {
 
 /* Element form functions */
 function newFormOption() {
-    var clone = $('#option_template').clone();
-    clone.removeAttr('id');
-    clone.appendTo('#option_list');
-    clone.show(500);
+    var new_option = $('#option_template').clone().insertBefore('#options_list tbody tr#option_template').removeAttr('id');
+    new_option.children().find('div').show(500);
 }
 function deleteFormOption(link_el) {
-    var parent_element = link_el.parents("li.option");
+    var parent_element = link_el.parents("tr.option");
     if(parent_element){
         $(parent_element).fadeOut(500, function() { parent_element.remove(); });
     }

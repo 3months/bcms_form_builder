@@ -7,3 +7,5 @@ require 'bcms_form_builder/custom_form_builder'
 # environment.rb
 ActionView::Base.default_form_builder = Cms::CustomFormBuilder
 
+ActionView::Base.default_form_builder = Cms::CustomFormBuilder
+

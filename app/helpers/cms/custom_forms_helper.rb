@@ -8,5 +8,9 @@ module Cms::CustomFormsHelper
     yield
     concat("</#{tag.to_s}>", block.binding)
   end
+
+  def table_row_div_style(template)
+    return template ? 'display: none;' : nil
+  end
   
 end
