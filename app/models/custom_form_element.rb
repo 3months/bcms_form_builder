@@ -71,10 +71,16 @@ class CustomFormElement < ActiveRecord::Base
 
   # self.build_batch
   #
+  # TODO - currently, the new elements are ordered arbitrarily, based on the order
+  # of the elements_hash.  We need to somehow detect the order in which they are
+  # submitted.
+  #
+  # Ordering does work when in edit mode and elements are dragged around.
+  #
   def self.build_batch(elements_hash, parent)
     new_elements = []
     old_elements = parent.custom_form_elements.map {|e| e}
-    base_position = parent.next_elements_position
+    base_position = parent.next_elements_position 
 
     elements_hash.each do |k, v|
       next unless klass = subclass(v.delete(:type))
@@ -88,17 +94,23 @@ class CustomFormElement < ActiveRecord::Base
       # An initial version had the position passable from the UI, however now
       # we don't support this.  Leaving this condition in so we can support it
       # later...
-      position = v.delete(:position)
-      if position.to_s.match(/^\d+$/)
-        position = position.to_i
-      else
-        position = base_position
+#      position = v.delete(:position)
+#      if position.to_s.match(/^\d+$/)
+#        position = position.to_i
+#      else
+#        position = base_position
+#        base_position += 1
+#      end
+
+      latest_element = new_elements.last
+      unless latest_element.new_record?
+        # if latest_element is existing record - do nothing
+        # else set the default next position
+        latest_element.position = base_position
         base_position += 1
       end
-      latest_element = new_elements.last
-      latest_element.position = position
+      
       latest_element.name = v.delete(:name)
-
       latest_element.attributes = v
 
       logger.debug("Assigning type: #{latest_element.class} to form in position #{latest_element.position}")
