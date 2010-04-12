@@ -1,7 +1,8 @@
 /* CustomForm edit form functions */
 function newFormElement(selector) {
+    var next_pos = $("input[name*='[position]']").length + 1
     var new_form_element = $('#new_form_element');
-    $.get('/cms/custom_forms/new_element_partial', {type: selector.value}, function(data, textStatus) {
+    $.get('/cms/custom_forms/new_element_partial', {type: selector.value, position : next_pos}, function(data, textStatus) {
         new_form_element.hide();
         new_form_element[0].innerHTML = data;
         new_form_element.removeAttr('id');

@@ -6,6 +6,7 @@
   <%= text_field_tag("custom_form[elements][#{index}][name]", element.name) %>
   <br clear="all" />
   <%= hidden_field_tag("custom_form[elements][#{index}][type]", 'HtmlBlockCustomFormElement') %>
+  <%= hidden_field_tag("custom_form[elements][#{index}][position]", element.position) %>
   <br clear="all" />
   <%= render :partial => 'cms/custom_forms/forms/element_management_links', :locals => {:element => element}  %>
 </div>
