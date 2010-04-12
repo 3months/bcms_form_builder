@@ -90,25 +90,18 @@ class CustomFormElement < ActiveRecord::Base
       else
         new_elements << old_elements.detect {|old_el| old_el.id == k.to_i} || klass.new
       end
-
-      # An initial version had the position passable from the UI, however now
-      # we don't support this.  Leaving this condition in so we can support it
-      # later...
-#      position = v.delete(:position)
-#      if position.to_s.match(/^\d+$/)
-#        position = position.to_i
-#      else
-#        position = base_position
-#        base_position += 1
-#      end
-
-      latest_element = new_elements.last
-      unless latest_element.new_record?
-        # if latest_element is existing record - do nothing
-        # else set the default next position
-        latest_element.position = base_position
+      
+      # JM - fix for bug where clicking save on the edit form
+      # would bork the ordering of fields
+      # The element's position is passed thru from the UI and should always be > 0
+      # We stick it on the end of the list if it isn't set or becomes zero
+      position = v.delete(:position).to_i
+      if position == 0
+        position = base_position
         base_position += 1
-      end
+      end      
+      latest_element = new_elements.last
+      latest_element.position = position
       
       latest_element.name = v.delete(:name)
       latest_element.attributes = v

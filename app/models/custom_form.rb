@@ -18,8 +18,9 @@ class CustomForm < ActiveRecord::Base
   #
   # See CustomFormElement#build_batch for required format of <elements_hash>
   #
-  def elements=(elements_hash)
+  def elements=(elements_hash)    
     CustomFormElement.build_batch(elements_hash, self)
+    
     # this is to trick callbacks into thinking that record has changed
     # required to ensure that cascading save works.  # TODO Not ideal solution
     self.name_will_change!

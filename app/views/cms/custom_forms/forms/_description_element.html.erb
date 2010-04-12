@@ -9,6 +9,7 @@
     <%= label_tag "custom_form_elements_#{index}_text", 'Text' %>
     <%= text_area_tag("custom_form[elements][#{index}][text]", element.text, :cols => 65, :rows => 3) %>
     <%= hidden_field_tag("custom_form[elements][#{index}][type]", 'DescriptionCustomFormElement') %>
+    <%= hidden_field_tag("custom_form[elements][#{index}][position]", element.position) %>
     <br clear="all" />
   <% end %>
   <%= render :partial => 'cms/custom_forms/forms/element_management_links', :locals => {:element => element}  %>

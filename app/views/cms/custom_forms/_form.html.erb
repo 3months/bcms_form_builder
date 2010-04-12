@@ -9,18 +9,12 @@
               opacity: 0.4,
               scroll: true,
               update: function(){
-                $.ajax({
-                    type: 'post',
-                    axis: 'y',
-                    dropOnEmpty:false,
-                    handle: '.handle',
-                    cursor: 'crosshair',
-                    items: 'li',
-                    data: $('#element_list').sortable('serialize'),
-                    complete: function(request){
-                        $('#element_list').effect('highlight');
-                      },
-                    url: '<%= order_elements_cms_custom_form_path(:id => @block.id) %>'})
+                  position_elements = $("input[name*='[position]']");
+                  pos = 1;
+                  position_elements.each(function(index) {
+                    this.value = pos;
+                    pos++;
+                  });
                 }
               }
             );
