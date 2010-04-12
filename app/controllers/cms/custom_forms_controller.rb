@@ -12,8 +12,11 @@ class Cms::CustomFormsController < Cms::ContentBlockController
       render :nothing => true, :status => 404
       return
     end
-
+    
+    params[:position] ||= 0
+    
     element = klass.new
+    element.position = params[:position]
     index = (session[:form_builder] ||= {:element_index => 0})[:element_index].to_i + 1
     session[:form_builder][:element_index] += 1
     
