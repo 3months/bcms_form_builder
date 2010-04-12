@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bcms_form_builder}
-  s.version = "0.2"
+  s.version = "0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["3months - Kim Chirnside"]
-  s.date = %q{2009-12-26}
+  s.date = %q{2010-04-12}
   s.description = %q{Custom form builder for public BCMS pages}
   s.email = %q{kim@3months.com}
   s.extra_rdoc_files = [
@@ -90,7 +90,7 @@ Gem::Specification.new do |s|
     "rails/init.rb"
   ]
   s.has_rdoc = true
-  s.homepage = %q{http://www.3months.com}
+  s.homepage = %q{http://github.com/3months/bcms_form_builder}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
