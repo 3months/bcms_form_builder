@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors = ["3months - Kim Chirnside"]
   s.date = %q{2010-04-12}
   s.description = %q{Custom form builder for public BCMS pages}
-  s.email = %q{kim@3months.com}
+  s.email = %q{kimmy.chirnside@gmail.com}
   s.extra_rdoc_files = [
      "README"
   ]
