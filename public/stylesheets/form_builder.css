@@ -42,12 +42,16 @@ form li.dyn_element {
 
 /* Public styles */
 .formSection {
-	width: 566px;
 	background-color: #f6f6f6;
-	margin-bottom: 10px;
+	margin: 10px;
+	padding: 5px 15px;
 }
 
-.formSection fieldset h3 {
+.formSection .styles_block {
+  clear: both;
+}
+
+.formSection h3 {
 	color: #666666;
 	font-size: 1.6em;
 	display: block;
@@ -63,52 +67,31 @@ form li.dyn_element {
 	margin-bottom:10px;
 }
 
-.formSection fieldset {
-	border: none;
-	margin: 10px;
-	padding: 0px 0px 20px;
-	clear: both;
-}
-
-.formSection fieldset legend {
-	color: #666666;
-	font-size: 1.6em;
-	display: block;
-	_margin: 0 -8px;/* IE win*/
-	padding: 0px;
-	margin-bottom: 12px;
-	font-weight: bold;
-	line-height: 1.6em;
-}
-
-.formSection fieldset h3 span {
+.formSection h3 span {
 	color: #ff9900;
 }
 
-.formSection fieldset .field_container p {
+.formSection .field_container {
+	margin-bottom: 10px;
+}
+
+.formSection .field_container p {
 	font-size:1.2em;
-	clear: both;
 	margin-bottom: 10px;
 }
 
-
-.formSection fieldset .field_container {
-	clear: both;
-	margin-bottom: 10px;
-}
-
-.formSection fieldset .field_container ul {
+.formSection .field_container ul {
 	margin:0em;
 	padding: 0px;
 }
 
-.formSection fieldset .field_container li {
+.formSection .field_container li {
 	list-style-type: none;
 	margin: 0px;
 	padding: 0px;
 }
 
-.formSection fieldset .field_container .inputGroupGrey {
+.formSection .field_container .inputGroupGrey {
 	background-color:#f0f0f0;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -116,7 +99,7 @@ form li.dyn_element {
 	padding-bottom: 6px;
 }
 
-.formSection fieldset .field_container .frequenceyWrapper {
+.formSection .field_container .frequenceyWrapper {
 	background-color:#f0f0f0;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -124,24 +107,24 @@ form li.dyn_element {
 	margin-bottom: 10px;
 }
 
-.formSection fieldset .field_container .frequenceyWrapper .title {
+.formSection .field_container .frequenceyWrapper .title {
 	font-weight:bold;
 	padding:0 0 0 8px;
 	/* fix for IE peekaboo bug */
 	height: 1%;
 }
 
-.formSection fieldset .field_container .inputGroup {
+.formSection .field_container .inputGroup {
 	background-color:#f6f6f6;
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
 
-.formSection fieldset .field_container li label {
+.formSection .field_container li label {
 	margin-left: 5px;
 }
 
-.formSection fieldset .field_container .fieldLabel {
+.formSection .field_container .fieldLabel {
 	float: left;
 	width: 150px;
 	font-weight: bold;
@@ -151,23 +134,23 @@ form li.dyn_element {
 }
 
 
-.formSection fieldset .field_container .fieldLabel label {
+.formSection .field_container .fieldLabel label {
 	font-weight: bold;
 }
 
-.formSection fieldset .field_container .fieldContent {
+.formSection .field_container .fieldContent {
 	float: left;
-	width: 394px;
+	width: 350px;
 	font-size:1.1em;
 	padding-top: 5px;
 }
 
-.formSection fieldset .field_container .fieldContent ul, .formSection fieldset .field_container .fieldContent li{
+.formSection .field_container .fieldContent ul, .formSection .field_container .fieldContent li{
 	margin:0px;
 	padding:0px;
 	list-style-type: none;
 }
 
-.formSection fieldset .field_container label {
+.formSection .field_container label {
 	color: #707070;
 }

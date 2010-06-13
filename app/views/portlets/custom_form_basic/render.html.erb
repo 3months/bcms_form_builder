@@ -1,26 +1,23 @@
-<% content_for :html_header do %>
-  <%= stylesheet_link_tag 'form_builder' %>
-  <% if @form.attachment_file_path %>
-    <%= stylesheet_link_tag @form.attachment_file_path %>
-  <% end %>
-<% end %>
-
 <% if @form -%>
   <% form_tag(cms_handler_path(@portlet, "submit_form")) do %>
     <% errors_exist = flash["#{@portlet.instance_name}_errors"].is_a?(Hash) && flash["#{@portlet.instance_name}_errors"].length > 0 %>
     <div class="formSection">
-        <fieldset>
           <% if errors_exist -%>
             <div class="error_alert">There were errors in your submission.</div>
           <% end -%>
           <% @form.custom_form_elements.each do |element| -%>
             <%= render(:partial => "cms/custom_forms/display/#{element.class.config.name}_element", :locals => {:element => element, :errors_exist => errors_exist}) %>
           <% end -%>
-        </fieldset>
+      <div class="styles_dummy">
+        <%= stylesheet_link_tag 'form_builder' %>
+        <% if @form.attachment_file_path %>
+          <%= stylesheet_link_tag @form.attachment_file_path %>
+        <% end %>
+      </div>
     </div>
   <% end %>
-
 <% else -%>
   No form associated to portlet.  Please contact site administrators.
 <% end -%>
+
 
